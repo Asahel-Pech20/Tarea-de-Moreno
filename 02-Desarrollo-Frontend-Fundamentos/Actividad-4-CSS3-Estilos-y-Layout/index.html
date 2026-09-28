@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica CSS3: Portal Estilizado y Responsivo - Grupo 4-C</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Encabezado con degradado y navegación Flexbox -->
+  <header>
+    <h1>Portal Tecnológico 4-C</h1>
+    <p>Demostración práctica de Hojas de Estilo en Cascada (CSS3), Flexbox y Diseño Responsivo</p>
+    
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#articulos">Noticias</a></li>
+        <li><a href="#tabla">Plan de Estudios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenedor central -->
+  <main id="inicio">
+
+    <!-- Sección de Noticias con Tarjetas Flexbox -->
+    <section id="articulos">
+      <h2 class="seccion-titulo">Noticias de la Semana</h2>
+
+      <div class="noticias-grid">
+        <article class="tarjeta-noticia">
+          <h3>¿Cómo transforma CSS3 el diseño web?</h3>
+          <p class="meta-info">📅 22 de Septiembre de 2026 | 👤 Alumno 4-C</p>
+          <p>
+            Gracias a CSS3 podemos diseñar páginas que se adaptan a cualquier tamaño de pantalla de celular o monitor sin necesidad de duplicar código, utilizando herramientas como Flexbox y Media Queries.
+          </p>
+        </article>
+
+        <article class="tarjeta-noticia">
+          <h3>El Modelo de Caja (Box Model)</h3>
+          <p class="meta-info">📅 20 de Septiembre de 2026 | 👤 Redacción Web</p>
+          <p>
+            Cada elemento en la pantalla es tratado por el navegador como una caja rectangular compuesta por contenido (content), relleno interior (padding), borde (border) y margen exterior (margin).
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tabla con estilos profesionales -->
+    <section id="tabla">
+      <h2 class="seccion-titulo">Plan de Actividades</h2>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Actividad</th>
+              <th>Tecnologías</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ACT-01</td>
+              <td>Conceptos Generales de la Web</td>
+              <td>HTTP, Cliente-Servidor</td>
+              <td><span class="badge-estado badge-completado">Completado</span></td>
+            </tr>
+            <tr>
+              <td>ACT-02</td>
+              <td>Entornos y Configuración</td>
+              <td>Node.js, Git, VS Code</td>
+              <td><span class="badge-estado badge-completado">Completado</span></td>
+            </tr>
+            <tr>
+              <td>ACT-03</td>
+              <td>Estructura HTML5</td>
+              <td>Semántica, Formularios</td>
+              <td><span class="badge-estado badge-completado">Completado</span></td>
+            </tr>
+            <tr>
+              <td>ACT-04</td>
+              <td>Estilos y Diseño CSS3</td>
+              <td>Flexbox, Media Queries</td>
+              <td><span class="badge-estado badge-progreso">En Progreso</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Formulario estilizado -->
+    <section id="contacto">
+      <h2 class="seccion-titulo">Buzón de Dudas</h2>
+      <div class="formulario-caja">
+        <form action="#" method="POST">
+          <div class="form-grupo">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre..." required>
+          </div>
+
+          <div class="form-grupo">
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" placeholder="ejemplo@universidad.edu.mx" required>
+          </div>
+
+          <div class="form-grupo">
+            <label for="area">Tema de Interés:</label>
+            <select id="area" name="area">
+              <option value="css">Diseño y Maquetación (CSS3)</option>
+              <option value="js">Programación JavaScript</option>
+              <option value="angular">Framework Angular</option>
+            </select>
+          </div>
+
+          <div class="form-grupo">
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿Tienes alguna pregunta sobre la actividad?"></textarea>
+          </div>
+
+          <div class="acciones-form">
+            <button type="submit" class="btn btn-primario">Enviar Consulta</button>
+            <button type="reset" class="btn btn-secundario">Limpiar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 - Tareas de Aplicaciones Web | Grupo 4-C</p>
+    <p><small>Diseño desarrollado con HTML5 y CSS3 responsivo.</small></p>
+  </footer>
+
+</body>
+</html>

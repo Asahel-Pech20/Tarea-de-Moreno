@@ -1,0 +1,93 @@
+{
+  "materia": "Aplicaciones Web",
+  "grupo": "4-C",
+  "ultima_actualizacion": "2026-09-25T10:39:30.000Z",
+  "estado_general": "100% COMPLETADO",
+  "actividades": {
+    "ACT-01": {
+      "unidad": 1,
+      "nombre": "Conceptos Generales del Desarrollo Web",
+      "carpeta": "01-Introduccion-al-Desarrollo-Web/Actividad-1-Conceptos-Generales",
+      "estado": "completado",
+      "archivos": [
+        "README.md",
+        "Documentacion-Actividad-1.docx"
+      ],
+      "notas": "Conceptos de cliente-servidor, HTTP/HTTPS, DNS, Front vs Back con analogías sencillas."
+    },
+    "ACT-02": {
+      "unidad": 1,
+      "nombre": "Entornos de Desarrollo y Configuración",
+      "carpeta": "01-Introduccion-al-Desarrollo-Web/Actividad-2-Entorno-y-Herramientas",
+      "estado": "completado",
+      "archivos": [
+        "verificar-entorno.js",
+        "README.md",
+        "Documentacion-Actividad-2.docx"
+      ],
+      "notas": "Navegadores, VS Code, Node.js, npm, terminal de comandos y script de verificación."
+    },
+    "ACT-03": {
+      "unidad": 2,
+      "nombre": "Estructura de la Web con HTML5",
+      "carpeta": "02-Desarrollo-Frontend-Fundamentos/Actividad-3-HTML5-Estructura",
+      "estado": "completado",
+      "archivos": [
+        "index.html",
+        "README.md",
+        "Documentacion-Actividad-3.docx"
+      ],
+      "notas": "Etiquetas semánticas, tablas, formularios, maquetación base."
+    },
+    "ACT-04": {
+      "unidad": 2,
+      "nombre": "Hojas de Estilos en Cascada (CSS3)",
+      "carpeta": "02-Desarrollo-Frontend-Fundamentos/Actividad-4-CSS3-Estilos-y-Layout",
+      "estado": "completado",
+      "archivos": [
+        "styles.css",
+        "index.html",
+        "README.md",
+        "Documentacion-Actividad-4.docx"
+      ],
+      "notas": "Box model, Flexbox, media queries y diseño responsivo."
+    },
+    "ACT-05": {
+      "unidad": 2,
+      "nombre": "Compendio de las 10 Prácticas de JavaScript (Curso Notion)",
+      "carpeta": "02-Desarrollo-Frontend-Fundamentos/Actividad-5-JavaScript-Basico-Notion",
+      "estado": "completado",
+      "archivos": [
+        "practica-01-variables.js",
+        "practica-02-funciones.js",
+        "practica-03-scope-y-hoisting.js",
+        "practica-04-coercion-y-operadores.js",
+        "practica-05-condicionales.js",
+        "practica-06-juego-piedra-papel-tijera-if.js",
+        "practica-07-juego-piedra-papel-tijera-switch.js",
+        "practica-08-arrays-y-metodos.js",
+        "practica-09-bucles-for-y-while.js",
+        "practica-10-objetos-y-reto-constructores.js",
+        "practica-11-metodos-recorrido-arrays.js",
+        "ejecutar-todos-los-ejercicios.js",
+        "README.md",
+        "Documentacion-Actividad-5.docx"
+      ],
+      "notas": "10 prácticas individuales e independientes cubriendo todos los módulos y retos del enlace de Notion de JavaScript."
+    },
+    "ACT-06": {
+      "unidad": 3,
+      "nombre": "Proyecto WebNews con Angular Material y API REST",
+      "carpeta": "03-Proyecto-Angular-WebNews",
+      "estado": "completado",
+      "archivos": [
+        "backend-api/",
+        "webnews-frontend/",
+        "iniciar-proyecto.bat",
+        "README.md",
+        "Documentacion-Proyecto-WebNews.docx"
+      ],
+      "notas": "Backend REST API + Frontend Angular con Material, componentes, routing, servicios, guards y modales."
+    }
+  }
+}

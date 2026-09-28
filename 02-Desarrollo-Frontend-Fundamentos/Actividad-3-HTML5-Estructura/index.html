@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica HTML5: Portal de Noticias Estudiantil - Grupo 4-C</title>
+</head>
+<body>
+
+  <!-- Encabezado Principal Semántico -->
+  <header>
+    <h1>Portal Informativo 4-C: Noticias de Tecnología</h1>
+    <p>Práctica de maquetación semántica con HTML5</p>
+    
+    <!-- Barra de Navegación -->
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#articulos">Noticias</a></li>
+        <li><a href="#tabla">Horarios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <hr>
+
+  <!-- Contenido Principal -->
+  <main id="inicio">
+
+    <!-- Sección de Artículos / Noticias -->
+    <section id="articulos">
+      <h2>Últimas Publicaciones</h2>
+
+      <article>
+        <h3>1. ¿Por qué aprender Desarrollo Web en 2026?</h3>
+        <p><strong>Fecha de publicación:</strong> 22 de Septiembre de 2026 | <strong>Autor:</strong> Alumno 4-C</p>
+        <p>
+          El desarrollo web se mantiene como una de las habilidades más demandadas en el mundo tecnológico.
+          A través de estándares como <em>HTML5</em>, <em>CSS3</em> y frameworks modernos como <em>Angular</em>, 
+          es posible crear soluciones que impactan a millones de usuarios en todo el planeta.
+        </p>
+      </article>
+
+      <article>
+        <h3>2. La evolución de HTML5 y la Semántica</h3>
+        <p><strong>Fecha de publicación:</strong> 20 de Septiembre de 2026 | <strong>Autor:</strong> Redacción Web</p>
+        <p>
+          A diferencia de las versiones antiguas de HTML que usaban solo etiquetas <code>&lt;div&gt;</code> para todo,
+          HTML5 introdujo etiquetas con significado propio (como <code>&lt;header&gt;</code>, <code>&lt;article&gt;</code>,
+          y <code>&lt;footer&gt;</code>), lo cual facilita la accesibilidad para personas con discapacidad y mejora el
+          posicionamiento en buscadores como Google.
+        </p>
+      </article>
+    </section>
+
+    <hr>
+
+    <!-- Sección de Tabla de Datos -->
+    <section id="tabla">
+      <h2>Calendario de Temas del Curso</h2>
+      <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Módulo</th>
+            <th>Tema Principal</th>
+            <th>Tecnología</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Unidad I</td>
+            <td>Introducción y Entornos</td>
+            <td>HTTP, Node.js, Git</td>
+            <td>Completado</td>
+          </tr>
+          <tr>
+            <td>Unidad II</td>
+            <td>Estructura y Estilos</td>
+            <td>HTML5 y CSS3</td>
+            <td>En Desarrollo</td>
+          </tr>
+          <tr>
+            <td>Unidad II</td>
+            <td>Lógica de Programación</td>
+            <td>JavaScript Moderno</td>
+            <td>Próximo</td>
+          </tr>
+          <tr>
+            <td>Unidad III</td>
+            <td>Aplicación WebNews</td>
+            <td>Angular & Material</td>
+            <td>Proyecto Final</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr>
+
+    <!-- Sección de Formulario -->
+    <section id="contacto">
+      <h2>Buzón de Dudas y Registro</h2>
+      <form action="#" method="POST">
+        <div>
+          <label for="nombre">Nombre Completo:</label><br>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+        </div>
+        <br>
+        <div>
+          <label for="correo">Correo Electrónico:</label><br>
+          <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+        </div>
+        <br>
+        <div>
+          <label for="carrera">Interés Principal:</label><br>
+          <select id="carrera" name="carrera">
+            <option value="frontend">Desarrollo Front-End</option>
+            <option value="backend">Desarrollo Back-End</option>
+            <option value="fullstack">Full-Stack (Ambos)</option>
+          </select>
+        </div>
+        <br>
+        <div>
+          <label for="mensaje">Comentario o Duda:</label><br>
+          <textarea id="mensaje" name="mensaje" rows="4" cols="40" placeholder="Escribe tu mensaje aquí..."></textarea>
+        </div>
+        <br>
+        <button type="submit">Enviar Información</button>
+        <button type="reset">Limpiar Formulario</button>
+      </form>
+    </section>
+
+  </main>
+
+  <hr>
+
+  <!-- Pie de Página Semántico -->
+  <footer>
+    <p>&copy; 2026 - Tareas de Aplicaciones Web | Grupo 4-C</p>
+    <p><small>Todos los derechos reservados. Página elaborada para propósitos educativos.</small></p>
+  </footer>
+
+</body>
+</html>

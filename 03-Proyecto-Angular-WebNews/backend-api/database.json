@@ -1,0 +1,69 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "nombre": "Tecnología",
+      "activo": true,
+      "descripcion": "Noticias sobre computación, inteligencia artificial, software y gadgets modernos.",
+      "UserAlta": "Admin",
+      "FechaAlta": "2026-09-01T10:00:00.000Z",
+      "UserBaja": "",
+      "FechaBaja": "",
+      "FechaMod": "",
+      "UserMod": ""
+    },
+    {
+      "id": 2,
+      "nombre": "Desarrollo Web",
+      "activo": true,
+      "descripcion": "Todo lo relativo a Angular, TypeScript, APIs REST y el ecosistema Front-End.",
+      "UserAlta": "Admin",
+      "FechaAlta": "2026-09-02T10:00:00.000Z",
+      "UserBaja": "",
+      "FechaBaja": "",
+      "FechaMod": "",
+      "UserMod": ""
+    },
+    {
+      "id": 3,
+      "nombre": "Ciencia y Espacio",
+      "activo": true,
+      "descripcion": "Avances en astronomía, misiones espaciales y descubrimientos científicos.",
+      "UserAlta": "Admin",
+      "FechaAlta": "2026-09-03T10:00:00.000Z",
+      "UserBaja": "",
+      "FechaBaja": "",
+      "FechaMod": "",
+      "UserMod": ""
+    }
+  ],
+  "noticias": [
+    {
+      "id": 1,
+      "titulo": "Angular lanza soporte avanzado con Signals e Hidratación",
+      "descripcion": "La nueva versión del framework potencia las Single Page Applications con un rendimiento superior y flujo de control optimizado.",
+      "categoria_id": 2,
+      "fecha_publicacion": "2026-09-20T12:00:00.000Z",
+      "imagen": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=60",
+      "UserAlta": "Admin"
+    },
+    {
+      "id": 2,
+      "titulo": "Computación cuántica alcanza nuevo hito en procesamiento",
+      "descripcion": "Investigadores logran ejecutar algoritmos complejos en una fracción de segundo frente a supercomputadoras tradicionales.",
+      "categoria_id": 1,
+      "fecha_publicacion": "2026-09-21T14:30:00.000Z",
+      "imagen": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60",
+      "UserAlta": "Admin"
+    },
+    {
+      "id": 3,
+      "titulo": "Telescopio James Webb descubre atmósfera prometedora en exoplaneta",
+      "descripcion": "Nuevas lecturas espectroscópicas confirman la presencia de vapor de agua y compuestos orgánicos a 120 años luz.",
+      "categoria_id": 3,
+      "fecha_publicacion": "2026-09-22T08:00:00.000Z",
+      "imagen": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60",
+      "UserAlta": "Admin"
+    }
+  ]
+}

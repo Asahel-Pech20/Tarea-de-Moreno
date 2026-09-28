@@ -1,0 +1,288 @@
+/* ==========================================================================
+   HOJA DE ESTILOS CSS3 - APLICACIONES WEB (4-C)
+   Conceptos: Variables CSS, Box Model, Flexbox y Diseño Responsivo (Mobile First)
+   ========================================================================== */
+
+/* 1. VARIABLES CSS GLOBALES (Facilitan mantener una paleta de colores uniforme) */
+:root {
+  --color-primario: #1976d2;      /* Azul principal */
+  --color-primario-oscuro: #0d47a1;
+  --color-secundario: #f5f7fa;    /* Fondo claro */
+  --color-texto: #263238;         /* Texto oscuro legible */
+  --color-blanco: #ffffff;
+  --color-acento: #ff9800;        /* Naranja para llamadas a la acción */
+  --color-borde: #e0e0e0;
+  --sombra-tarjeta: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transicion-rapida: all 0.3s ease;
+}
+
+/* 2. REINICIO Y MODELO DE CAJA (Box-Sizing) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* El padding y borde no aumentan el ancho total */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--color-texto);
+  background-color: var(--color-secundario);
+  padding: 0;
+}
+
+/* 3. ENCABEZADO Y BARRA DE NAVEGACIÓN (FLEXBOX) */
+header {
+  background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+  color: var(--color-blanco);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+}
+
+header p {
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav ul {
+  display: flex; /* Flexbox para alinear el menú horizontalmente */
+  list-style: none;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--color-blanco);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: var(--transicion-rapida);
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* 4. CONTENEDOR PRINCIPAL */
+main {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* 5. TARJETAS DE NOTICIAS CON GRID Y FLEXBOX */
+.seccion-titulo {
+  font-size: 1.5rem;
+  color: var(--color-primario-oscuro);
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--color-primario);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.noticias-grid {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.tarjeta-noticia {
+  flex: 1 1 calc(50% - 1.5rem); /* Ocupa la mitad del contenedor en pantallas medianas */
+  min-width: 280px;
+  background: var(--color-blanco);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-tarjeta);
+  transition: var(--transicion-rapida);
+}
+
+.tarjeta-noticia:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.tarjeta-noticia h3 {
+  color: var(--color-primario);
+  margin-bottom: 0.5rem;
+}
+
+.meta-info {
+  font-size: 0.85rem;
+  color: #78909c;
+  margin-bottom: 1rem;
+}
+
+/* 6. TABLA ESTILIZADA */
+.tabla-contenedor {
+  overflow-x: auto;
+  background: var(--color-blanco);
+  border-radius: 8px;
+  box-shadow: var(--sombra-tarjeta);
+  padding: 1rem;
+  margin-bottom: 3rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
+th {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: #e3f2fd;
+}
+
+.badge-estado {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.badge-completado {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.badge-progreso {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+/* 7. FORMULARIO ESTILIZADO */
+.formulario-caja {
+  background: var(--color-blanco);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: var(--sombra-tarjeta);
+  max-width: 650px;
+  margin: 0 auto 3rem auto;
+}
+
+.form-grupo {
+  margin-bottom: 1.2rem;
+}
+
+.form-grupo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #37474f;
+}
+
+.form-grupo input,
+.form-grupo select,
+.form-grupo textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: var(--transicion-rapida);
+}
+
+.form-grupo input:focus,
+.form-grupo select:focus,
+.form-grupo textarea:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
+}
+
+.acciones-form {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transicion-rapida);
+}
+
+.btn-primario {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+.btn-primario:hover {
+  background-color: var(--color-primario-oscuro);
+}
+
+.btn-secundario {
+  background-color: #cfd8dc;
+  color: #37474f;
+}
+
+.btn-secundario:hover {
+  background-color: #b0bec5;
+}
+
+/* 8. PIE DE PÁGINA */
+footer {
+  background-color: #1a202c;
+  color: #cbd5e0;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+/* 9. RESPONSIVE DESIGN (MEDIA QUERIES) */
+@media (max-width: 768px) {
+  header {
+    text-align: center;
+  }
+
+  nav ul {
+    justify-content: center;
+  }
+
+  .tarjeta-noticia {
+    flex: 1 1 100%; /* En móviles, cada tarjeta ocupa el 100% del ancho */
+  }
+
+  .acciones-form {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

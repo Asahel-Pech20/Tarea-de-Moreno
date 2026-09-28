@@ -1,0 +1,17 @@
+/* Angular Material Theme & Global Styles */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+.main-content {
+  min-height: calc(100vh - 140px);
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
