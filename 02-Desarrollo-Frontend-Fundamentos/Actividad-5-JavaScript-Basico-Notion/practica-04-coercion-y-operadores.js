@@ -6,7 +6,7 @@
  */
 
 console.log("=================================================");
-console.log("📌 PRÁCTICA 4: COERCIÓN, TRUTHY/FALSY Y OPERADORES");
+console.log("PRÁCTICA 4: COERCIÓN, TRUTHY/FALSY Y OPERADORES");
 console.log("=================================================\n");
 
 // 1. COERCIÓN IMPLÍCITA (Automática)
@@ -40,4 +40,4 @@ console.log("\n--- Comparación Débil (==) vs. Estricta (===) ---");
 console.log('5 == "5"   ->', 5 == "5", "  (Débil: convierte tipos y solo compara valor)");
 console.log('5 === "5"  ->', 5 === "5", " (Estricta: compara valor Y tipo de dato, recomendada)");
 
-console.log("\n✅ Práctica 4 completada con éxito.");
+console.log("\n[OK] Práctica 4 completada con éxito.");

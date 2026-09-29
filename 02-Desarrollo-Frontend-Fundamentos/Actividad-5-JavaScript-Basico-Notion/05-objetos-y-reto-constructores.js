@@ -34,7 +34,7 @@ console.log("Auto individual:", autoNuevo.describir());
 
 // 3. RETO NOTION: GENERAR 30 AUTOS AUTOMÁTICAMENTE CON UN CICLO
 console.log("\n=======================================================");
-console.log("🚗 RETO: GENERACIÓN AUTOMÁTICA DE 30 AUTOS CON CICLO");
+console.log("RETO: GENERACIÓN AUTOMÁTICA DE 30 AUTOS CON CICLO");
 console.log("=======================================================\n");
 
 const marcasDisponibles = ["Ford", "Chevrolet", "Toyota", "Nissan", "Honda", "BMW", "Audi", "Volkswagen"];
@@ -56,4 +56,4 @@ garajeDe30Autos.forEach((auto, indice) => {
   console.log(`Auto #${(indice + 1).toString().padStart(2, '0')}: ${auto.describir()}`);
 });
 
-console.log(`\n✅ Reto completado con éxito: Se instanciaron ${garajeDe30Autos.length} objetos Auto en memoria.`);
+console.log(`\n[OK] Reto completado con éxito: Se instanciaron ${garajeDe30Autos.length} objetos Auto en memoria.`);

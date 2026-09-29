@@ -62,7 +62,7 @@ import { MatIconModule } from '@angular/material/icon';
             }
 
             <div class="demo-hints">
-              <small>🔑 <strong>Credenciales demo:</strong> admin&#64;webnews.com / admin123</small>
+              <small><strong>Credenciales demo:</strong> admin&#64;webnews.com / admin123</small>
             </div>
 
             <button mat-raised-button color="primary" type="submit" class="full-width submit-btn" [disabled]="loginForm.invalid || enviando">

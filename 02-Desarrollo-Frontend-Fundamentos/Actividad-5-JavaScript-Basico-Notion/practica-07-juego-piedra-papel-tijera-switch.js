@@ -6,7 +6,7 @@
  */
 
 console.log("================================================================");
-console.log("📌 PRÁCTICA 7: RETO 2 - PIEDRA, PAPEL O TIJERA (CON SWITCH)");
+console.log("PRÁCTICA 7: RETO 2 - PIEDRA, PAPEL O TIJERA (CON SWITCH)");
 console.log("================================================================\n");
 
 const OPCIONES = ["piedra", "papel", "tijera"];
@@ -20,15 +20,15 @@ function jugarPiedraPapelTijeraSwitch(jugador, cpu) {
 
   switch (true) {
     case jugador === cpu:
-      return `🤝 [SWITCH] ¡EMPATE! Ambos eligieron [${jugador}].`;
+      return `[SWITCH] ¡EMPATE! Ambos eligieron [${jugador}].`;
 
     case jugador === "piedra" && cpu === "tijera":
     case jugador === "papel" && cpu === "piedra":
     case jugador === "tijera" && cpu === "papel":
-      return `🎉 [SWITCH] ¡GANASTE! [${jugador}] vence a [${cpu}].`;
+      return `[SWITCH] ¡GANASTE! [${jugador}] vence a [${cpu}].`;
 
     default:
-      return `😢 [SWITCH] PERDISTE. [${cpu}] vence a [${jugador}].`;
+      return `[SWITCH] PERDISTE. [${cpu}] vence a [${jugador}].`;
   }
 }
 
@@ -46,4 +46,4 @@ for (let i = 1; i <= 3; i++) {
   console.log(`Ronda ${i}: Jugador=[${tiroJugador}] vs CPU=[${tiroCpu}] -> ${jugarPiedraPapelTijeraSwitch(tiroJugador, tiroCpu)}`);
 }
 
-console.log("\n✅ Práctica 7 completada con éxito.");
+console.log("\n[OK] Práctica 7 completada con éxito.");

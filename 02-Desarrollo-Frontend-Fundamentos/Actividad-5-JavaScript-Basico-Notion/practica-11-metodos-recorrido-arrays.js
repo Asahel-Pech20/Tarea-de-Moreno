@@ -6,7 +6,7 @@
  */
 
 console.log("================================================================");
-console.log("📌 PRÁCTICA 11: MÉTODOS MODERNOS DE RECORRIDO DE ARRAYS (ES6+)");
+console.log("PRÁCTICA 11: MÉTODOS MODERNOS DE RECORRIDO DE ARRAYS (ES6+)");
 console.log("================================================================\n");
 
 // Array de productos tecnológicos para probar los métodos
@@ -44,4 +44,4 @@ inventario.forEach((prod, i) => {
   console.log(`   [Item ${i + 1}] ${prod.nombre.padEnd(22)} | Categ: ${prod.categoria.padEnd(14)} | $${prod.precio}`);
 });
 
-console.log("\n✅ Práctica 11 (Métodos de Array) completada con éxito.");
+console.log("\n[OK] Práctica 11 (Métodos de Array) completada con éxito.");

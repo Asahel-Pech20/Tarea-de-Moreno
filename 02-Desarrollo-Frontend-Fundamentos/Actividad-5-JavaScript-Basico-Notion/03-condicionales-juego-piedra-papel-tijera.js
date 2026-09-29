@@ -13,15 +13,15 @@ function jugarConIf(jugador, cpu) {
   cpu = cpu.toLowerCase();
 
   if (jugador === cpu) {
-    return `🤝 ¡Empate! Ambos eligieron ${jugador}.`;
+    return `¡Empate! Ambos eligieron ${jugador}.`;
   } else if (
     (jugador === "piedra" && cpu === "tijera") ||
     (jugador === "papel" && cpu === "piedra") ||
     (jugador === "tijera" && cpu === "papel")
   ) {
-    return `🎉 ¡Ganaste! ${jugador} vence a ${cpu}.`;
+    return `¡Ganaste! ${jugador} vence a ${cpu}.`;
   } else {
-    return `😢 Perdiste. ${cpu} vence a ${jugador}.`;
+    return `Perdiste. ${cpu} vence a ${jugador}.`;
   }
 }
 
@@ -32,15 +32,15 @@ function jugarConSwitch(jugador, cpu) {
 
   switch (true) {
     case jugador === cpu:
-      return `🤝 [Switch] ¡Empate! Ambos eligieron ${jugador}.`;
+      return `[Switch] ¡Empate! Ambos eligieron ${jugador}.`;
 
     case jugador === "piedra" && cpu === "tijera":
     case jugador === "papel" && cpu === "piedra":
     case jugador === "tijera" && cpu === "papel":
-      return `🎉 [Switch] ¡Ganaste! ${jugador} vence a ${cpu}.`;
+      return `[Switch] ¡Ganaste! ${jugador} vence a ${cpu}.`;
 
     default:
-      return `😢 [Switch] Perdiste. ${cpu} vence a ${jugador}.`;
+      return `[Switch] Perdiste. ${cpu} vence a ${jugador}.`;
   }
 }
 

@@ -6,7 +6,7 @@
  */
 
 console.log("=================================================");
-console.log("📌 PRÁCTICA 1: VARIABLES Y TIPOS DE DATOS EN JS");
+console.log("PRÁCTICA 1: VARIABLES Y TIPOS DE DATOS EN JS");
 console.log("=================================================\n");
 
 // 1. Declaración de variables con let y const (estándar moderno)
@@ -35,4 +35,4 @@ console.log("3. inscrito         :", typeof inscrito, `(${inscrito})`);
 console.log("4. calificacion     :", typeof calificacionPendiente, `(${calificacionPendiente})`);
 console.log("5. observaciones    :", typeof observaciones, `(${observaciones})`);
 
-console.log("\n✅ Práctica 1 completada con éxito.");
+console.log("\n[OK] Práctica 1 completada con éxito.");

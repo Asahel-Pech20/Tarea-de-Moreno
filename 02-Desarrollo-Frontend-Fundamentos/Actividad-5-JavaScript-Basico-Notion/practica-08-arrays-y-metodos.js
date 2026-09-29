@@ -6,7 +6,7 @@
  */
 
 console.log("================================================================");
-console.log("📌 PRÁCTICA 8: ARRAYS, ÍNDICES Y MÉTODOS DE MANIPULACIÓN");
+console.log("PRÁCTICA 8: ARRAYS, ÍNDICES Y MÉTODOS DE MANIPULACIÓN");
 console.log("================================================================\n");
 
 // 1. Creación de un array y acceso por índice
@@ -36,4 +36,4 @@ console.log(`4. frutas.shift() eliminó '${eliminadoInicio}' ->`, frutas);
 let posicionCereza = frutas.indexOf("Cereza");
 console.log(`5. frutas.indexOf('Cereza')      -> Posición: ${posicionCereza}`);
 
-console.log("\n✅ Práctica 8 completada con éxito.");
+console.log("\n[OK] Práctica 8 completada con éxito.");

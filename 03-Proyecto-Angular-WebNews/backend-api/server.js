@@ -147,9 +147,9 @@ app.delete('/api/news/:id', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`====================================================`);
-  console.log(`🚀 SERVIDOR REST API "ApiNews" EJECUTÁNDOSE`);
-  console.log(`📡 URL Base: http://localhost:${PORT}/api`);
-  console.log(`📌 Endpoints disponibles:`);
+  console.log(`  SERVIDOR REST API "ApiNews" INICIADO`);
+  console.log(`  URL Base: http://localhost:${PORT}/api`);
+  console.log(`  Endpoints disponibles:`);
   console.log(`   - POST /api/login`);
   console.log(`   - GET  /api/categories`);
   console.log(`   - GET  /api/categories/:id`);

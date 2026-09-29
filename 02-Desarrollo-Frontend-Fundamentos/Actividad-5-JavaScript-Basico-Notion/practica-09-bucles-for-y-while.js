@@ -6,7 +6,7 @@
  */
 
 console.log("================================================================");
-console.log("📌 PRÁCTICA 9: BUCLES Y CICLOS DE REPETICIÓN");
+console.log("PRÁCTICA 9: BUCLES Y CICLOS DE REPETICIÓN");
 console.log("================================================================\n");
 
 const estudiantes = ["María", "Jorge", "Lucía", "Ricardo", "Elena"];
@@ -40,4 +40,4 @@ do {
   intentos++;
 } while (intentos <= 2);
 
-console.log("\n✅ Práctica 9 completada con éxito.");
+console.log("\n[OK] Práctica 9 completada con éxito.");

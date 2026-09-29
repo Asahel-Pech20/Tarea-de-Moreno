@@ -6,7 +6,7 @@
  */
 
 console.log("================================================================");
-console.log("📌 PRÁCTICA 6: RETO 1 - PIEDRA, PAPEL O TIJERA (CON IF / ELSE)");
+console.log("PRÁCTICA 6: RETO 1 - PIEDRA, PAPEL O TIJERA (CON IF / ELSE)");
 console.log("================================================================\n");
 
 const OPCIONES = ["piedra", "papel", "tijera"];
@@ -20,7 +20,7 @@ function jugarPiedraPapelTijeraIf(jugador, cpu) {
 
   // Validación de empates
   if (jugador === cpu) {
-    return `🤝 ¡EMPATE! Ambos eligieron [${jugador}].`;
+    return `¡EMPATE! Ambos eligieron [${jugador}].`;
   }
 
   // Validación de las 3 condiciones de victoria para el jugador
@@ -29,10 +29,10 @@ function jugarPiedraPapelTijeraIf(jugador, cpu) {
     (jugador === "papel" && cpu === "piedra") ||
     (jugador === "tijera" && cpu === "papel")
   ) {
-    return `🎉 ¡GANASTE! [${jugador}] vence a [${cpu}].`;
+    return `¡GANASTE! [${jugador}] vence a [${cpu}].`;
   } else {
     // Si no es empate ni ganaste, la CPU gana
-    return `😢 PERDISTE. [${cpu}] vence a [${jugador}].`;
+    return `PERDISTE. [${cpu}] vence a [${jugador}].`;
   }
 }
 
@@ -50,4 +50,4 @@ for (let i = 1; i <= 3; i++) {
   console.log(`Ronda ${i}: Jugador=[${tiroJugador}] vs CPU=[${tiroCpu}] -> ${jugarPiedraPapelTijeraIf(tiroJugador, tiroCpu)}`);
 }
 
-console.log("\n✅ Práctica 6 completada con éxito.");
+console.log("\n[OK] Práctica 6 completada con éxito.");

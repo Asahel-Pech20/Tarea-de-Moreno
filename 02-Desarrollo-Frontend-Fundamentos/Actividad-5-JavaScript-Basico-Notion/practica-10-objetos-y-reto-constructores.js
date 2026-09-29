@@ -6,7 +6,7 @@
  */
 
 console.log("================================================================");
-console.log("📌 PRÁCTICA 10: OBJETOS LITERALES Y RETO DE CONSTRUCTORES CON CICLO");
+console.log("PRÁCTICA 10: OBJETOS LITERALES Y RETO DE CONSTRUCTORES CON CICLO");
 console.log("================================================================\n");
 
 // 1. Objeto Literal
@@ -40,7 +40,7 @@ console.log(autoDemo.describir());
 // 3. EL GRAN RETO DE NOTION:
 // Generar una lista de 30 autos automáticamente combinando un ciclo for y la función constructora.
 console.log("\n================================================================");
-console.log("🚗 RETO NOTION: GENERACIÓN AUTOMÁTICA DE 30 AUTOS CON CICLO FOR");
+console.log("RETO NOTION: GENERACIÓN AUTOMÁTICA DE 30 AUTOS CON CICLO FOR");
 console.log("================================================================\n");
 
 const marcas = ["Toyota", "Nissan", "Ford", "Chevrolet", "Honda", "BMW", "Audi", "Volkswagen"];
@@ -64,5 +64,5 @@ listaDe30Autos.forEach((auto, index) => {
   console.log(`[${(index + 1).toString().padStart(2, '0')}/30] ${auto.describir()}`);
 });
 
-console.log(`\n🎉 Total de autos instanciados en memoria: ${listaDe30Autos.length}`);
-console.log("✅ Práctica 10 y Reto de Notion completados con éxito.");
+console.log(`\nTotal de autos instanciados en memoria: ${listaDe30Autos.length}`);
+console.log("[OK] Práctica 10 y Reto de Notion completados con éxito.");

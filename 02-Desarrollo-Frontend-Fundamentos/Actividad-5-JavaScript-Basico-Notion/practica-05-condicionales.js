@@ -6,20 +6,20 @@
  */
 
 console.log("=================================================");
-console.log("📌 PRÁCTICA 5: CONDICIONALES IF, ELSE IF Y ELSE");
+console.log("PRÁCTICA 5: CONDICIONALES IF, ELSE IF Y ELSE");
 console.log("=================================================\n");
 
 function clasificarCalificacion(calificacion) {
   if (calificacion < 0 || calificacion > 100) {
-    return "❌ Calificación inválida (debe ser entre 0 y 100)";
+    return "[ERROR] Calificación inválida (debe ser entre 0 y 100)";
   } else if (calificacion >= 90) {
-    return "🏆 Sobresaliente (Excelente desempeño)";
+    return "Sobresaliente (Excelente desempeño)";
   } else if (calificacion >= 80) {
     return "⭐ Muy Bien (Desempeño destacado)";
   } else if (calificacion >= 70) {
-    return "✅ Aprobado (Cumple los objetivos)";
+    return "[OK] Aprobado (Cumple los objetivos)";
   } else {
-    return "⚠️ No Acreditado (Requiere regularización)";
+    return "[AVISO] No Acreditado (Requiere regularización)";
   }
 }
 
@@ -35,4 +35,4 @@ let edadUsuario = 19;
 let puedeVotar = edadUsuario >= 18 ? "Sí puede votar" : "No puede votar (menor de edad)";
 console.log(`\nOperador Ternario -> Edad ${edadUsuario}: ${puedeVotar}`);
 
-console.log("\n✅ Práctica 5 completada con éxito.");
+console.log("\n[OK] Práctica 5 completada con éxito.");

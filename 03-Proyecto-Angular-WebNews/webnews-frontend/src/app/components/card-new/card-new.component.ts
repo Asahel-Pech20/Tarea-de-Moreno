@@ -14,7 +14,7 @@ import { MatChipsModule } from '@angular/material/chips';
       <mat-card-header>
         <div class="category-badge">{{ inputCategoria || 'General' }}</div>
         <mat-card-title class="card-title">{{ inputTitulo }}</mat-card-title>
-        <mat-card-subtitle class="card-date">📅 Publicado: {{ inputFecha }}</mat-card-subtitle>
+        <mat-card-subtitle class="card-date">Publicado: {{ inputFecha }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p class="card-desc">{{ inputDescripcion }}</p>

@@ -6,7 +6,7 @@
  */
 
 console.log("=================================================");
-console.log("📌 PRÁCTICA 2: FUNCIONES DECLARATIVAS Y DE EXPRESIÓN");
+console.log("PRÁCTICA 2: FUNCIONES DECLARATIVAS Y DE EXPRESIÓN");
 console.log("=================================================\n");
 
 // 1. Función Declarativa (se procesa antes de ejecutar el código)
@@ -30,4 +30,4 @@ const prom = calcularPromedio(8.5, 9.0, 7.5);
 console.log(`\nPromedio obtenido: ${prom.toFixed(2)}`);
 console.log(`¿El alumno acreditó la materia?: ${esAprobado(prom) ? "SÍ (Aprobado)" : "NO (Reprobado)"}`);
 
-console.log("\n✅ Práctica 2 completada con éxito.");
+console.log("\n[OK] Práctica 2 completada con éxito.");

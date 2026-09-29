@@ -21,20 +21,20 @@ const practicas = [
 ];
 
 console.log('========================================================================');
-console.log('🚀 EJECUTANDO LAS 10 PRÁCTICAS INDIVIDUALES DE JAVASCRIPT (CURSO NOTION)');
+console.log('  EJECUTANDO LAS 10 PRACTICAS INDIVIDUALES DE JAVASCRIPT (CURSO NOTION)');
 console.log('========================================================================\n');
 
 practicas.forEach((archivo, index) => {
-  console.log(`\n▶️ [PRÁCTICA ${index + 1}/${practicas.length}]: ${archivo}`);
+  console.log(`\n-- [PRACTICA ${index + 1}/${practicas.length}]: ${archivo}`);
   console.log('------------------------------------------------------------------------');
   try {
     const salida = execSync(`node "${path.join(__dirname, archivo)}"`, { encoding: 'utf8' });
     console.log(salida);
   } catch (err) {
-    console.error(`❌ Error en ${archivo}:`, err.message);
+    console.error(`[ERROR] Error en ${archivo}:`, err.message);
   }
 });
 
 console.log('========================================================================');
-console.log('🎉 TODAS LAS 10 PRÁCTICAS Y RETOS FUERON EJECUTADOS CON ÉXITO');
+console.log('  TODAS LAS PRACTICAS Y RETOS FUERON EJECUTADOS CORRECTAMENTE');
 console.log('========================================================================');
