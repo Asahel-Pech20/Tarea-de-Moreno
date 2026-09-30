@@ -64,6 +64,24 @@
       "fecha_publicacion": "2026-09-22T08:00:00.000Z",
       "imagen": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60",
       "UserAlta": "Admin"
+    },
+    {
+      "id": 4,
+      "titulo": "eihief",
+      "descripcion": "euhfuifeh",
+      "categoria_id": 1,
+      "fecha_publicacion": "2026-09-30T18:28:19.333Z",
+      "imagen": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60",
+      "UserAlta": "Admin"
+    },
+    {
+      "id": 5,
+      "titulo": "Nueva Noticia desde Tester API WebNews",
+      "descripcion": "Demostración de inserción HTTP POST en tiempo real hacia la base de datos.",
+      "categoria_id": 1,
+      "fecha_publicacion": "2026-09-30T18:33:23.426Z",
+      "imagen": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60",
+      "UserAlta": "WebNewsTester"
     }
   ]
 }

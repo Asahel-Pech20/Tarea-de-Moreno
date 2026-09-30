@@ -30,10 +30,18 @@ import { Category } from '../../interfaces/interfaces';
 
       <span class="spacer"></span>
 
-      <!-- Categorías dinámicas -->
+      <!-- Navegación Principal y Módulos -->
       <nav class="nav-links">
         <button mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
           <mat-icon>home</mat-icon> Inicio
+        </button>
+
+        <button mat-button routerLink="/tester" routerLinkActive="active-link">
+          <mat-icon>api</mat-icon> Tester API
+        </button>
+
+        <button mat-button routerLink="/retos" routerLinkActive="active-link">
+          <mat-icon>sports_esports</mat-icon> Retos JS
         </button>
 
         @for (cat of categories; track cat.id) {
