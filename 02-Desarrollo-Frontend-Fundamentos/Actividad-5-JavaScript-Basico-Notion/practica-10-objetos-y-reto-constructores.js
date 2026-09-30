@@ -46,8 +46,6 @@ console.log("================================================================\n"
 const marcas = ["Toyota", "Nissan", "Ford", "Chevrolet", "Honda", "BMW", "Audi", "Volkswagen"];
 const modelos = ["Sedán", "SUV", "Coupe", "Camioneta", "Hatchback", "Deportivo"];
 
-const listaDe30Autos = [];
-
 function fabricarAutos(cantidad) {
   const autos = [];
   for (let i = 1; i <= cantidad; i++) {
