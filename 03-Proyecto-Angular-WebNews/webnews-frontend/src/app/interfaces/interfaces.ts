@@ -1,8 +1,8 @@
 export interface Category {
   id?: number;
   nombre: string;
-  activo: boolean;
-  descripcion: string;
+  activo?: boolean;
+  descripcion?: string;
   UserAlta?: string;
   FechaAlta?: string;
   UserBaja?: string;
