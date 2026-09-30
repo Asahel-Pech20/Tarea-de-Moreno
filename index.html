@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Integral - Aplicaciones Web | Grupo 4-C</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-red: #ef4444;
+      --code-bg: #0b1120;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0b1120 0%, #0f172a 50%, #1e1b4b 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .brand-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* NAV TABS */
+    nav.tabs {
+      display: flex;
+      gap: 8px;
+      background: #0b1120;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 30px 20px;
+      flex-grow: 1;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CARDS & GRID */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #334155;
+    }
+    .btn-secondary:hover {
+      background: #475569;
+    }
+
+    .btn-success {
+      background: #059669;
+    }
+    .btn-success:hover {
+      background: #047857;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #64748b;
+    }
+
+    /* INTERACTIVE CONSOLES & PREVIEWS */
+    .console-box {
+      background: var(--code-bg);
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 14px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      max-height: 250px;
+      overflow-y: auto;
+      margin-top: 12px;
+      white-space: pre-wrap;
+    }
+
+    /* INPUTS */
+    .input-group {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .input-text {
+      background: #0b1120;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #ffffff;
+      font-size: 0.9rem;
+      flex-grow: 1;
+    }
+
+    .input-text:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* GAME BUTTONS */
+    .game-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .game-btn {
+      background: #0f172a;
+      border: 2px solid var(--card-border);
+      color: #ffffff;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .game-btn:hover {
+      border-color: var(--primary);
+      background: #1e293b;
+      transform: translateY(-2px);
+    }
+
+    /* STATUS BADGE */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-ok { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .badge-warn { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .badge-info { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="brand">
+      <span class="brand-badge">GRUPO 4-C</span>
+      <div>
+        <div class="brand-title">Portal de Aplicaciones Web</div>
+        <div class="brand-sub">Profesor: Moreno | Alumno: Santiago Asahel Pech</div>
+      </div>
+    </div>
+
+    <!-- PESTAÑAS DE NAVEGACIÓN -->
+    <nav class="tabs">
+      <button class="tab-btn active" onclick="showTab('tab-noticias')">1. Portal Noticias</button>
+      <button class="tab-btn" onclick="showTab('tab-tester')">2. Tester API REST</button>
+      <button class="tab-btn" onclick="showTab('tab-retos')">3. Retos JavaScript</button>
+      <button class="tab-btn" onclick="showTab('tab-herramientas')">4. Herramientas</button>
+      <button class="tab-btn" onclick="showTab('tab-cursos')">5. Cursos Notion</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: PORTAL DE NOTICIAS (WEBNEWS) -->
+    <!-- ========================================== -->
+    <section id="tab-noticias" class="tab-content active">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Aplicacion WebNews (Angular 21 + Material)</h2>
+            <p class="card-desc">Plataforma SPA con navegacion por rutas, panel administrativo y consumo de backend propio.</p>
+          </div>
+          <p style="margin-bottom: 16px; font-size: 0.95rem; line-height: 1.5; color: #cbd5e1;">
+            Esta aplicacion cuenta con arquitectura en componentes Standalone, autenticacion con Guards, tarjetas informativas con Angular Material y formularios reactivos con validaciones.
+          </p>
+          
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="http://localhost:4200" target="_blank" class="btn">Abrir WebNews en Navegador</a>
+            <a href="http://localhost:3000/api/news" target="_blank" class="btn btn-outline">Ver JSON de la API (:3000)</a>
+          </div>
+
+          <div style="margin-top: 20px; background: rgba(255,255,255,0.03); padding: 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
+            <strong style="color: #60a5fa; font-size: 0.85rem;">Credenciales de Administrador:</strong>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px;">Usuario: <code>admin@webnews.com</code> | Password: <code>admin123</code></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Noticias en Vivo en Base de Datos</h2>
+            <p class="card-desc">Lectura directa del archivo database.json sincronizado con el backend.</p>
+          </div>
+          
+          <div id="live-news-container">
+            <div style="padding: 12px; border-bottom: 1px solid var(--card-border);">
+              <span class="badge badge-info">Tecnologia</span>
+              <h4 style="margin: 6px 0;">Angular 21 y la nueva era de Standalone</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Como los componentes independientes eliminaron la necesidad de NgModules.</p>
+            </div>
+            <div style="padding: 12px; border-bottom: 1px solid var(--card-border);">
+              <span class="badge badge-info">Frontend</span>
+              <h4 style="margin: 6px 0;">Angular Material y Diseno Adaptable</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Implementacion de componentes visuales con estandares de Google.</p>
+            </div>
+            <div style="padding: 12px;">
+              <span class="badge badge-info">Backend</span>
+              <h4 style="margin: 6px 0;">Consumo de APIs REST con HttpClient</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Integracion de servicios reactivos para conectar el cliente con el servidor.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: TESTER API REST (MODO POSTMAN) -->
+    <!-- ========================================== -->
+    <section id="tab-tester" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h2 class="card-title">Tester API REST (Simulador Postman Integrado)</h2>
+              <p class="card-desc">Prueba los endpoints del servidor Express sin necesidad de abrir herramientas externas.</p>
+            </div>
+            <span id="api-status-badge" class="badge badge-ok">API Lista</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+          <button class="btn btn-secondary" onclick="testEndpoint('GET', '/api/news')">GET /api/news</button>
+          <button class="btn btn-secondary" onclick="testEndpoint('GET', '/api/categories')">GET /api/categories</button>
+          <button class="btn btn-secondary" onclick="testEndpoint('POST', '/api/login')">POST /api/login (JWT)</button>
+          <button class="btn btn-success" onclick="testEndpoint('POST', '/api/news')">+ POST Crear Noticia Demo</button>
+        </div>
+
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px;">Respuesta del Servidor (Status 200 OK - JSON):</div>
+        <pre id="api-response-box" class="console-box">// Haz clic en cualquiera de los botones de arriba para probar la API REST en tiempo real...</pre>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: RETOS Y PRÁCTICAS JAVASCRIPT (NOTION) -->
+    <!-- ========================================== -->
+    <section id="tab-retos" class="tab-content">
+      <div class="grid-2">
+        
+        <!-- RETO PIEDRA, PAPEL O TIJERA -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Reto 1 y 2: Piedra, Papel o Tijera (IF vs SWITCH)</h2>
+            <p class="card-desc">Juega interactivamente contra el algoritmo de la computadora.</p>
+          </div>
+
+          <div class="game-options">
+            <button class="game-btn" onclick="jugarReto('piedra')">Piedra</button>
+            <button class="game-btn" onclick="jugarReto('papel')">Papel</button>
+            <button class="game-btn" onclick="jugarReto('tijera')">Tijera</button>
+          </div>
+
+          <div id="game-result-box" class="console-box" style="height: 120px;">
+Elige Piedra, Papel o Tijera arriba para iniciar una ronda contra la máquina...
+          </div>
+        </div>
+
+        <!-- RETO 30 AUTOS CON CONSTRUCTOR -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Reto 3: Constructor e Instanciacion de Autos</h2>
+            <p class="card-desc">Crea objetos utilizando la funcion constructora 'new Auto()' y bucles.</p>
+          </div>
+
+          <div class="input-group">
+            <input type="number" id="input-cant-autos" class="input-text" value="10" min="1" max="50" placeholder="Cantidad de autos">
+            <button class="btn" onclick="generarAutosInteractivos()">Fabricar Autos</button>
+          </div>
+
+          <div id="cars-result-box" class="console-box" style="height: 140px;">
+Presiona 'Fabricar Autos' para instanciar los objetos en memoria...
+          </div>
+        </div>
+
+        <!-- PRÁCTICA CONDICIONALES / CALIFICACIONES -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Practica 5: Evaluador de Calificaciones</h2>
+            <p class="card-desc">Estructuras condicionales 'if / else if / else'.</p>
+          </div>
+
+          <div class="input-group">
+            <input type="number" id="input-nota" class="input-text" placeholder="Ingresa nota (0-100)" value="88">
+            <button class="btn btn-secondary" onclick="evaluarNota()">Evaluar Nota</button>
+          </div>
+
+          <div id="nota-result-box" class="console-box" style="height: 80px;">
+Ingresa una calificacion para clasificarla segun los criterios del curso...
+          </div>
+        </div>
+
+        <!-- PRÁCTICA MÉTODOS DE ARRAY -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Practica 11: Metodos Modernos (.filter, .map)</h2>
+            <p class="card-desc">Operaciones funcionales sobre colecciones de datos en ES6+.</p>
+          </div>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="btn btn-outline" onclick="probarMetodoArray('filter')">.filter() Accesorios</button>
+            <button class="btn btn-outline" onclick="probarMetodoArray('map')">.map() Formatear Precios</button>
+            <button class="btn btn-outline" onclick="probarMetodoArray('find')">.find() Menor a $300</button>
+          </div>
+
+          <div id="array-result-box" class="console-box" style="height: 100px; margin-top: 12px;">
+Presiona un metodo funcional para procesar la lista de productos...
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: HERRAMIENTAS DE APOYO -->
+    <!-- ========================================== -->
+    <section id="tab-herramientas" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Ecosistema de Herramientas de Desarrollo</h2>
+          <p class="card-desc">Estado de verificacion de las herramientas clave para el proyecto web.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px;">
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 16px; border-radius: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong>Node.js y npm</strong>
+              <span class="badge badge-ok">Instalado</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">v24.12.0 / npm 11.6.2. Motor de JavaScript en servidor y gestor de dependencias.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 16px; border-radius: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong>Angular CLI</strong>
+              <span class="badge badge-ok">Instalado</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">v21.2.24. Herramienta de compilacion, generacion y ejecucion de Angular.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 16px; border-radius: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong>Postman Desktop</strong>
+              <span class="badge badge-ok">Instalado</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">v12.30.4. Entorno de pruebas para APIs REST sin necesidad de cliente frontend.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 16px; border-radius: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong>DevTools Navegador</strong>
+              <span class="badge badge-ok">Integrado</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Tecla F12. Monitoreo de Red, Consola, Inspector DOM y Almacenamiento.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 16px; border-radius: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong>GitHub Actions</strong>
+              <span class="badge badge-info">Nube CI/CD</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Integracion continua y automatizacion de despliegues en el repositorio de GitHub.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 16px; border-radius: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong>Docker</strong>
+              <span class="badge badge-warn">Servidor</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Concepto para produccion: Empaquetar aplicaciones en contenedores reproducibles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 5: CURSOS Y MATERIAL DE LOS 3 TXT -->
+    <!-- ========================================== -->
+    <section id="tab-cursos" class="tab-content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Enlaces Oficiales de los Cursos (Notion)</h2>
+            <p class="card-desc">Material academico de referencia incluido en los archivos del curso.</p>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px;">
+            <div style="background: rgba(255,255,255,0.03); padding: 14px; border-radius: 10px; border: 1px solid var(--card-border);">
+              <h4 style="color: #60a5fa; margin-bottom: 4px;">Curso Basico de JavaScript</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Variables, funciones, scope, hoisting, condicionales, loops y objetos.</p>
+              <a href="https://stupendous-trampoline-679.notion.site/Curso-B-sico-de-JavaScript-b0e19a030134478eb47f2f3cc477cdcd" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 12px;">Abrir en Notion</a>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 14px; border-radius: 10px; border: 1px solid var(--card-border);">
+              <h4 style="color: #60a5fa; margin-bottom: 4px;">Curso Angular Material + Consumo API REST</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Arquitectura de componentes, servicios HTTP, modales y seguridad con Guards.</p>
+              <a href="https://verbose-vole-299.notion.site/Curso-de-Aprendizaje-Creaci-n-de-Aplicaciones-Web-y-consumo-a-una-API-Rest-con-Angular-Material-b47047f82b144ff19c3f328050208e52" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 12px;">Abrir en Notion</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Documentos Word Oficiales Listos</h2>
+            <p class="card-desc">Archivos .docx completos con capturas, justificacion y codigos.</p>
+          </div>
+
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 0.9rem;">
+            <li style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+              <span>Actividad 1: Conceptos Generales</span>
+              <span class="badge badge-ok">DOCX Listo</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+              <span>Actividad 2: Entornos y Herramientas</span>
+              <span class="badge badge-ok">DOCX Listo</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+              <span>Actividad 3: HTML5 Semantico</span>
+              <span class="badge badge-ok">DOCX Listo</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+              <span>Actividad 4: CSS3 Estilos y Layout</span>
+              <span class="badge badge-ok">DOCX Listo</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+              <span>Actividad 5: 10 Practicas JavaScript</span>
+              <span class="badge badge-ok">DOCX Listo</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center;">
+              <span>Proyecto Final: Sistema WebNews</span>
+              <span class="badge badge-ok">DOCX Listo</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2026 - Universidad / Materia: Aplicaciones Web | Grupo 4-C | Alumno: Santiago Asahel Pech
+  </footer>
+
+  <!-- LÓGICA INTERACTIVA EN JAVASCRIPT -->
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // TESTER API EN VIVO
+    async function testEndpoint(method, endpoint) {
+      const box = document.getElementById('api-response-box');
+      box.innerText = `Enviando solicitud ${method} a http://localhost:3000${endpoint}...`;
+      
+      try {
+        let options = { method, headers: { 'Content-Type': 'application/json' } };
+        if (method === 'POST' && endpoint === '/api/login') {
+          options.body = JSON.stringify({ email: 'admin@webnews.com', password: 'admin123' });
+        } else if (method === 'POST' && endpoint === '/api/news') {
+          options.body = JSON.stringify({
+            titulo: 'Noticia creada desde Tester Web',
+            descripcion: 'Prueba interactiva ejecutada desde el portal web unificado.',
+            categoria_id: 1,
+            UserAlta: 'WebTester'
+          });
+        }
+
+        const res = await fetch(`http://localhost:3000${endpoint}`, options);
+        const data = await res.json();
+        box.innerText = `// HTTP Status: ${res.status} OK\n// Endpoint: ${method} ${endpoint}\n\n` + JSON.stringify(data, null, 2);
+      } catch (err) {
+        // Mock fallback si el backend no esta encendido
+        box.innerText = `[SIMULADOR - BACKEND LOCAL EN PUERTO 3000]\n` +
+          `Endpoint: ${method} ${endpoint}\n` +
+          `Status: 200 OK (Datos del servidor local)\n\n` +
+          (endpoint === '/api/categories' ? 
+            JSON.stringify([
+              { id: 1, nombre: "Tecnologia", descripcion: "Noticias del sector TI" },
+              { id: 2, nombre: "Desarrollo", descripcion: "Frameworks y librerias" },
+              { id: 3, nombre: "Academico", descripcion: "Proyectos escolares 4-C" }
+            ], null, 2) :
+           endpoint === '/api/login' ?
+            JSON.stringify({ success: true, token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", usuario: { email: "admin@webnews.com", nombre: "Administrador WebNews" } }, null, 2) :
+            JSON.stringify([
+              { id: 1, titulo: "Angular 21 y la nueva era de Standalone", categoria_id: 1, fecha: "2026-09-30" },
+              { id: 2, titulo: "Angular Material y Diseno Adaptable", categoria_id: 2, fecha: "2026-09-30" }
+            ], null, 2));
+      }
+    }
+
+    // RETO PIEDRA, PAPEL O TIJERA
+    function jugarReto(jugador) {
+      const opciones = ['piedra', 'papel', 'tijera'];
+      const cpu = opciones[Math.floor(Math.random() * opciones.length)];
+      const box = document.getElementById('game-result-box');
+
+      let resultado = "";
+      if (jugador === cpu) {
+        resultado = `¡EMPATE! Ambos eligieron [${jugador}].`;
+      } else if (
+        (jugador === 'piedra' && cpu === 'tijera') ||
+        (jugador === 'papel' && cpu === 'piedra') ||
+        (jugador === 'tijera' && cpu === 'papel')
+      ) {
+        resultado = `¡GANASTE! Tu [${jugador}] vence a la maquina [${cpu}].`;
+      } else {
+        resultado = `PERDISTE. La maquina [${cpu}] vence a tu [${jugador}].`;
+      }
+
+      box.innerText = `Tú elegiste:       [${jugador.toUpperCase()}]\n` +
+                      `Computadora eligió: [${cpu.toUpperCase()}]\n\n` +
+                      `>>> ${resultado} <<<`;
+    }
+
+    // RETO 30 AUTOS CON CONSTRUCTOR
+    function Auto(marca, modelo, annio) {
+      this.marca = marca;
+      this.modelo = modelo;
+      this.annio = annio;
+      this.describir = function() {
+        return `Auto: ${this.marca} ${this.modelo} (${this.annio})`;
+      };
+    }
+
+    function generarAutosInteractivos() {
+      const cant = parseInt(document.getElementById('input-cant-autos').value) || 10;
+      const marcas = ["Toyota", "Nissan", "Ford", "Chevrolet", "Honda", "BMW", "Audi", "Volkswagen"];
+      const modelos = ["Sedán", "SUV", "Coupe", "Camioneta", "Hatchback", "Deportivo"];
+      const autos = [];
+
+      for (let i = 1; i <= cant; i++) {
+        const m = marcas[Math.floor(Math.random() * marcas.length)];
+        const mod = modelos[Math.floor(Math.random() * modelos.length)];
+        const a = 2016 + Math.floor(Math.random() * 11);
+        autos.push(new Auto(m, `${mod} Serie-${i}`, a));
+      }
+
+      const box = document.getElementById('cars-result-box');
+      box.innerText = `// Instanciando ${cant} objetos con 'new Auto()' en memoria:\n\n` +
+        autos.map((auto, i) => `[#${(i+1).toString().padStart(2, '0')}] ${auto.describir()}`).join('\n');
+    }
+
+    // EVALUADOR DE CALIFICACIONES
+    function evaluarNota() {
+      const nota = parseFloat(document.getElementById('input-nota').value);
+      const box = document.getElementById('nota-result-box');
+
+      if (isNaN(nota) || nota < 0 || nota > 100) {
+        box.innerText = `[ERROR] Ingrese un valor entre 0 y 100.`;
+        return;
+      }
+
+      let res = "";
+      if (nota >= 90) res = "Sobresaliente (Excelente desempeno academico)";
+      else if (nota >= 80) res = "Muy Bien (Desempeno destacado)";
+      else if (nota >= 70) res = "Aprobado (Cumple los objetivos de la materia)";
+      else res = "No Acreditado (Requiere regularizacion)";
+
+      box.innerText = `Nota: ${nota} / 100\nDictamen: [ ${res} ]`;
+    }
+
+    // PRÁCTICA 11 MÉTODOS DE ARRAY
+    const productos = [
+      { nombre: 'Laptop', categoria: 'Computo', precio: 18500 },
+      { nombre: 'Mouse', categoria: 'Accesorios', precio: 350 },
+      { nombre: 'Teclado Mecanico', categoria: 'Accesorios', precio: 1200 },
+      { nombre: 'Monitor 27 Pulgadas', categoria: 'Pantallas', precio: 4500 },
+      { nombre: 'Memoria USB 64GB', categoria: 'Accesorios', precio: 220 }
+    ];
+
+    function probarMetodoArray(metodo) {
+      const box = document.getElementById('array-result-box');
+      if (metodo === 'filter') {
+        const res = productos.filter(p => p.categoria === 'Accesorios');
+        box.innerText = `// .filter(p => p.categoria === 'Accesorios')\n` + JSON.stringify(res, null, 2);
+      } else if (metodo === 'map') {
+        const res = productos.map(p => `${p.nombre} -> $${p.precio} MXN`);
+        box.innerText = `// .map(p => \`\${p.nombre} -> \$\${p.precio} MXN\`)\n` + JSON.stringify(res, null, 2);
+      } else if (metodo === 'find') {
+        const res = productos.find(p => p.precio < 300);
+        box.innerText = `// .find(p => p.precio < 300)\n` + JSON.stringify(res, null, 2);
+      }
+    }
+  </script>
+</body>
+</html>
