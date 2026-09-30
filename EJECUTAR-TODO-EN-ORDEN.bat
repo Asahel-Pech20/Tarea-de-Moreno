@@ -44,12 +44,14 @@ echo   [23] Actividad 23: WebNews 08 - Dialogos Modales y Operaciones CRUD
 echo   [24] Actividad 24: WebNews 09 - Iniciar Proyecto WebNews (Backend+Front)
 echo.
 echo   ----------------------------------------------------------------------
+echo   [E] EDITAR CODIGO FUENTE (Abrir cualquier actividad en VS Code o Bloc de Notas)
 echo   [W] Abrir Carpeta con los 6 Documentos Word para Entregar
 echo   [0] Salir
 echo ========================================================================
-set /p opc="Elige una actividad (1-24) o presiona P para modo presentacion: "
+set /p opc="Elige una actividad (1-24), P para presentar, o E para editar: "
 
 if /i "%opc%"=="p" goto pres_1
+if /i "%opc%"=="e" goto edit_code
 if "%opc%"=="1" goto act1
 if "%opc%"=="2" goto act2
 if "%opc%"=="3" goto act3
@@ -76,6 +78,76 @@ if "%opc%"=="23" goto act23
 if "%opc%"=="24" goto act24
 if /i "%opc%"=="w" goto open_words
 if "%opc%"=="0" exit
+goto menu
+
+:edit_code
+cls
+echo ========================================================================
+echo     MODO EDICION: ABRIR CODIGO FUENTE EN VS CODE / BLOC DE NOTAS
+echo ========================================================================
+echo   Escribe el numero de la actividad que deseas editar (1 a 24),
+echo   o escribe 'TODO' para abrir todo el proyecto completo en VS Code:
+echo.
+set /p numedit="Numero de actividad a editar (1-24 o TODO): "
+
+if /i "%numedit%"=="todo" (
+  where code >nul 2>nul
+  if %errorlevel% equ 0 (
+    start "" code "%~dp0"
+    echo Proyecto abierto en VS Code.
+  ) else (
+    explorer "%~dp0"
+    echo Carpeta abierta en Explorador de Windows.
+  )
+  pause
+  goto menu
+)
+
+set "file_to_edit="
+if "%numedit%"=="1" set "file_to_edit=%~dp001-Introduccion-al-Desarrollo-Web\Actividad-1-Conceptos-Generales\README.md"
+if "%numedit%"=="2" set "file_to_edit=%~dp001-Introduccion-al-Desarrollo-Web\Actividad-2-Entorno-y-Herramientas\verificar-entorno.js"
+if "%numedit%"=="3" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-3-HTML5-Estructura\index.html"
+if "%numedit%"=="4" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-4-CSS3-Estilos-y-Layout\styles.css"
+if "%numedit%"=="5" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-01-variables.js"
+if "%numedit%"=="6" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-02-funciones.js"
+if "%numedit%"=="7" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-03-scope-y-hoisting.js"
+if "%numedit%"=="8" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-04-coercion-y-operadores.js"
+if "%numedit%"=="9" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-05-condicionales.js"
+if "%numedit%"=="10" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-06-juego-piedra-papel-tijera-if.js"
+if "%numedit%"=="11" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-07-juego-piedra-papel-tijera-switch.js"
+if "%numedit%"=="12" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-08-arrays-y-metodos.js"
+if "%numedit%"=="13" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-09-bucles-for-y-while.js"
+if "%numedit%"=="14" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-10-objetos-y-reto-constructores.js"
+if "%numedit%"=="15" set "file_to_edit=%~dp002-Desarrollo-Frontend-Fundamentos\Actividad-5-JavaScript-Basico-Notion\practica-11-metodos-recorrido-arrays.js"
+if "%numedit%"=="16" set "file_to_edit=%~dp003-Proyecto-Angular-WebNews\backend-api\server.js"
+if "%numedit%"=="17" set "file_to_edit=%~dp003-Proyecto-Angular-WebNews\webnews-frontend\src\app\components\home\home.component.ts"
+if "%numedit%"=="18" set "file_to_edit=%~dp003-Proyecto-Angular-WebNews\webnews-frontend\src\app\app.routes.ts"
+if "%numedit%"=="19" set "file_to_edit=%~dp003-Proyecto-Angular-WebNews\webnews-frontend\src\app\services\new.service.ts"
+if "%numedit%"=="20" set "file_to_edit=%~dp003-Proyecto-Angular-WebNews\webnews-frontend\src\app\components\login\login.component.ts"
+if "%numedit%"=="21" set "file_to_edit=%~dp003-Proyecto-Angular-WebNews\webnews-frontend\src\app\components\navbar\navbar.component.ts"
+if "%numedit%"=="22" set "file_to_edit=%~dp003-Proyecto-Angular-WebNews\webnews-frontend\src\app\guards\auth.guard.ts"
+if "%numedit%"=="23" set "file_to_edit=%~dp003-Proyecto-Angular-WebNews\webnews-frontend\src\app\components\news-dialog\news-dialog.component.ts"
+if "%numedit%"=="24" set "file_to_edit=%~dp003-Proyecto-Angular-WebNews\backend-api\database.json"
+
+if not defined file_to_edit (
+  echo [ERROR] Numero no valido.
+  pause
+  goto menu
+)
+
+where code >nul 2>nul
+if %errorlevel% equ 0 (
+  start "" code "%file_to_edit%"
+  echo Archivo abierto en VS Code: %file_to_edit%
+) else (
+  start notepad "%file_to_edit%"
+  echo Archivo abierto en Bloc de Notas: %file_to_edit%
+)
+echo.
+echo Presiona Guardar (Ctrl + S) en el editor despues de modificarlo,
+echo y al volver a ejecutar la actividad veras tus cambios reflejados.
+echo.
+pause
 goto menu
 
 :: ----------------------------------------------------

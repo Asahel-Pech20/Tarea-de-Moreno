@@ -48,21 +48,45 @@ const modelos = ["Sedán", "SUV", "Coupe", "Camioneta", "Hatchback", "Deportivo"
 
 const listaDe30Autos = [];
 
-for (let i = 1; i <= 30; i++) {
-  // Selección pseudo-aleatoria de marca, modelo y año
-  const marcaElegida = marcas[Math.floor(Math.random() * marcas.length)];
-  const modeloElegido = modelos[Math.floor(Math.random() * modelos.length)];
-  const annioElegido = 2016 + Math.floor(Math.random() * 11); // Años entre 2016 y 2026
-
-  // Instanciamos el objeto con new y lo agregamos a la lista
-  const nuevoAuto = new Auto(marcaElegida, `${modeloElegido} Serie-${i}`, annioElegido);
-  listaDe30Autos.push(nuevoAuto);
+function fabricarAutos(cantidad) {
+  const autos = [];
+  for (let i = 1; i <= cantidad; i++) {
+    const marcaElegida = marcas[Math.floor(Math.random() * marcas.length)];
+    const modeloElegido = modelos[Math.floor(Math.random() * modelos.length)];
+    const annioElegido = 2016 + Math.floor(Math.random() * 11);
+    const nuevoAuto = new Auto(marcaElegida, `${modeloElegido} Serie-${i}`, annioElegido);
+    autos.push(nuevoAuto);
+  }
+  return autos;
 }
 
-// Imprimimos la lista de los 30 autos generados
+const listaDe30Autos = fabricarAutos(30);
+
 listaDe30Autos.forEach((auto, index) => {
   console.log(`[${(index + 1).toString().padStart(2, '0')}/30] ${auto.describir()}`);
 });
 
 console.log(`\nTotal de autos instanciados en memoria: ${listaDe30Autos.length}`);
-console.log("[OK] Práctica 10 y Reto de Notion completados con éxito.");
+
+// Modo interactivo en terminal
+const readline = require('readline');
+if (process.stdin.isTTY) {
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  rl.question("\n¿Deseas fabricar una cantidad personalizada de autos con el constructor? (ej. 5, 15 o Enter para terminar): ", (resp) => {
+    rl.close();
+    resp = (resp || "").trim();
+    if (resp !== "") {
+      const cant = parseInt(resp);
+      if (!isNaN(cant) && cant > 0) {
+        console.log(`\nFabricando ${cant} autos personalizados con 'new Auto()':`);
+        const listaCustom = fabricarAutos(cant);
+        listaCustom.forEach((a, idx) => console.log(`   [#${idx + 1}] ${a.describir()}`));
+      } else {
+        console.log("[ERROR] Cantidad no valida.");
+      }
+    }
+    console.log("\n[OK] Practica 10 y Reto de Notion completados con exito.");
+  });
+} else {
+  console.log("[OK] Practica 10 y Reto de Notion completados con exito.");
+}

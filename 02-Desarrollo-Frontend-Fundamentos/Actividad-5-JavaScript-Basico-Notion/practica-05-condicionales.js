@@ -15,7 +15,7 @@ function clasificarCalificacion(calificacion) {
   } else if (calificacion >= 90) {
     return "Sobresaliente (Excelente desempeño)";
   } else if (calificacion >= 80) {
-    return "⭐ Muy Bien (Desempeño destacado)";
+    return "Muy Bien (Desempeño destacado)";
   } else if (calificacion >= 70) {
     return "[OK] Aprobado (Cumple los objetivos)";
   } else {
@@ -35,4 +35,22 @@ let edadUsuario = 19;
 let puedeVotar = edadUsuario >= 18 ? "Sí puede votar" : "No puede votar (menor de edad)";
 console.log(`\nOperador Ternario -> Edad ${edadUsuario}: ${puedeVotar}`);
 
-console.log("\n[OK] Práctica 5 completada con éxito.");
+// Modo interactivo en terminal
+const readline = require('readline');
+if (process.stdin.isTTY) {
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  rl.question("\n¿Deseas probar una calificacion personalizada? Ingresa una nota (0-100) o Enter para finalizar: ", (entrada) => {
+    rl.close();
+    if (entrada.trim() !== "") {
+      const notaUser = parseFloat(entrada);
+      if (isNaN(notaUser)) {
+        console.log("[ERROR] Debes ingresar un numero valido.");
+      } else {
+        console.log(`Resultado para nota ${notaUser}: ${clasificarCalificacion(notaUser)}`);
+      }
+    }
+    console.log("\n[OK] Practica 5 completada con exito.");
+  });
+} else {
+  console.log("\n[OK] Practica 5 completada con exito.");
+}

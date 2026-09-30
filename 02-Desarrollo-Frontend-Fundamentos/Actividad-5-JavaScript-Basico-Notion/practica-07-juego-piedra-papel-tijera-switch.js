@@ -46,4 +46,25 @@ for (let i = 1; i <= 3; i++) {
   console.log(`Ronda ${i}: Jugador=[${tiroJugador}] vs CPU=[${tiroCpu}] -> ${jugarPiedraPapelTijeraSwitch(tiroJugador, tiroCpu)}`);
 }
 
-console.log("\n[OK] Práctica 7 completada con éxito.");
+// Modo interactivo en terminal
+const readline = require('readline');
+if (process.stdin.isTTY) {
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  rl.question("\n¿Quieres retar a la maquina con switch? Elige (1: piedra, 2: papel, 3: tijera, o Enter para omitir): ", (tiro) => {
+    rl.close();
+    tiro = (tiro || "").trim().toLowerCase();
+    let eleccion = "";
+    if (tiro === "1" || tiro === "piedra") eleccion = "piedra";
+    else if (tiro === "2" || tiro === "papel") eleccion = "papel";
+    else if (tiro === "3" || tiro === "tijera") eleccion = "tijera";
+
+    if (eleccion) {
+      const tiroCpu = OPCIONES[Math.floor(Math.random() * OPCIONES.length)];
+      console.log(`\n[SWITCH] Tu eleccion: [${eleccion}] vs Computadora: [${tiroCpu}]`);
+      console.log(`Resultado: ${jugarPiedraPapelTijeraSwitch(eleccion, tiroCpu)}`);
+    }
+    console.log("\n[OK] Practica 7 completada con exito.");
+  });
+} else {
+  console.log("\n[OK] Practica 7 completada con exito.");
+}

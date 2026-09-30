@@ -36,4 +36,21 @@ console.log(`4. frutas.shift() eliminó '${eliminadoInicio}' ->`, frutas);
 let posicionCereza = frutas.indexOf("Cereza");
 console.log(`5. frutas.indexOf('Cereza')      -> Posición: ${posicionCereza}`);
 
-console.log("\n[OK] Práctica 8 completada con éxito.");
+// Modo interactivo en terminal
+const readline = require('readline');
+if (process.stdin.isTTY) {
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  rl.question("\n¿Deseas agregar una nueva fruta al array usando .push()? Escribe el nombre o Enter para terminar: ", (nuevaFruta) => {
+    rl.close();
+    nuevaFruta = (nuevaFruta || "").trim();
+    if (nuevaFruta !== "") {
+      frutas.push(nuevaFruta);
+      console.log(`\nElemento agregado: '${nuevaFruta}'`);
+      console.log("Array actualizado ->", frutas);
+      console.log(`Nueva longitud    -> ${frutas.length}`);
+    }
+    console.log("\n[OK] Practica 8 completada con exito.");
+  });
+} else {
+  console.log("\n[OK] Practica 8 completada con exito.");
+}
