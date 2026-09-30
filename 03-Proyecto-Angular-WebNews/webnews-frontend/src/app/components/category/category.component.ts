@@ -32,6 +32,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
           @for (noticia of newsByCategory; track noticia.id) {
             <div class="grid-item">
               <app-card-new
+                [noticiaCompleta]="noticia"
                 [inputTitulo]="noticia.titulo"
                 [inputDescripcion]="noticia.descripcion"
                 [inputCategoria]="noticia.categoria?.nombre"

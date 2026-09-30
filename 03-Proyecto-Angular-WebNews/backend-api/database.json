@@ -42,6 +42,7 @@
       "id": 1,
       "titulo": "Angular lanza soporte avanzado con Signals e Hidratación",
       "descripcion": "La nueva versión del framework potencia las Single Page Applications con un rendimiento superior y flujo de control optimizado.",
+      "contenido": "El equipo de ingeniería de Angular ha presentado oficialmente su última actualización mayor, diseñada para redefinir el paradigma reactivo en el desarrollo web moderno.\n\nLa principal novedad radica en la consolidación de los Signals, permitiendo una detección de cambios quirúrgica y de grano fino sin necesidad de recurrir a la sobrecarga computacional de librerías de parcheo como Zone.js. Esto se traduce en una reducción drástica del uso de memoria y una respuesta visual instantánea en dispositivos móviles.\n\nAsimismo, el nuevo motor de hidratación progresiva para arquitecturas SSR (Server-Side Rendering) asegura que las páginas se vuelvan interactivas en milisegundos tras la carga inicial, optimizando los índices Core Web Vitals y el posicionamiento SEO.",
       "categoria_id": 2,
       "fecha_publicacion": "2026-09-20T12:00:00.000Z",
       "imagen": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=60",
@@ -51,6 +52,7 @@
       "id": 2,
       "titulo": "Computación cuántica alcanza nuevo hito en procesamiento",
       "descripcion": "Investigadores logran ejecutar algoritmos complejos en una fracción de segundo frente a supercomputadoras tradicionales.",
+      "contenido": "Un consorcio internacional de físicos e ingenieros en computación ha logrado un avance decisivo en la estabilidad y corrección de errores en cúbits superconductores a temperaturas cercanas al cero absoluto.\n\nEl procesador cuántico experimental completó el cálculo de simulación de enlaces moleculares en apenas 3 minutos con 42 segundos. Según estimaciones del laboratorio, una supercomputadora clásica de última generación habría demorado más de 10,000 años de cálculo continuo para resolver la misma matriz matemática.\n\nEste hito acerca la computación cuántica a casos de uso de la vida real, como el diseño acelerado de nuevos medicamentos, el análisis de materiales superconductores y algoritmos criptográficos impenetrables.",
       "categoria_id": 1,
       "fecha_publicacion": "2026-09-21T14:30:00.000Z",
       "imagen": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60",
@@ -60,6 +62,7 @@
       "id": 3,
       "titulo": "Telescopio James Webb descubre atmósfera prometedora en exoplaneta",
       "descripcion": "Nuevas lecturas espectroscópicas confirman la presencia de vapor de agua y compuestos orgánicos a 120 años luz.",
+      "contenido": "Los sensores infrarrojos de última generación a bordo del Telescopio Espacial James Webb (JWST) han captado la firma espectral más nítida jamás registrada de un planeta rocoso que orbita dentro de la zona de habitabilidad de su estrella anfitriona.\n\nEl análisis espectroscópico de transmisión atmosférica reveló líneas de absorción concluyentes correspondientes a vapor de agua (H2O), dióxido de carbono (CO2) y trazas intrigantes de sulfuro de dimetilo, un compuesto bioindicador de gran interés astrobiológico.\n\nLos científicos han reservado tiempo de observación adicional para confirmar la estabilidad térmica de la atmósfera y descartar posibles interferencias estelares en las mediciones.",
       "categoria_id": 3,
       "fecha_publicacion": "2026-09-22T08:00:00.000Z",
       "imagen": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60",
@@ -69,10 +72,20 @@
       "id": 5,
       "titulo": "Nueva Noticia desde Tester API WebNews",
       "descripcion": "Demostración de inserción HTTP POST en tiempo real hacia la base de datos.",
+      "contenido": "Esta publicación fue inyectada de manera interactiva a través del módulo Tester API integrado en WebNews.\n\nDemuestra el ciclo completo de vida de una petición HTTP: envío del payload JSON desde el frontend Angular, recepción e inserción atómica por el servidor Express en Node.js, y persistencia inmediata en la capa de datos.\n\nEl sistema cuenta con validaciones completas, asignación dinámica de identificador secuencial y actualización en vivo para todos los clientes conectados.",
       "categoria_id": 1,
       "fecha_publicacion": "2026-09-30T18:33:23.426Z",
       "imagen": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60",
       "UserAlta": "WebNewsTester"
+    },
+    {
+      "id": 6,
+      "titulo": "wndbhjidbjwkfd",
+      "descripcion": "XDDD\n",
+      "categoria_id": 1,
+      "fecha_publicacion": "2026-09-30T18:41:43.659Z",
+      "imagen": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60",
+      "UserAlta": "Admin"
     }
   ]
 }

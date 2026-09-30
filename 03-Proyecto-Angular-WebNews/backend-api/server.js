@@ -103,6 +103,7 @@ app.post('/api/news', (req, res) => {
     categoria_id: parseInt(req.body.categoria_id) || 1,
     fecha_publicacion: req.body.fecha_publicacion || new Date().toISOString(),
     imagen: req.body.imagen || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60',
+    contenido: req.body.contenido || req.body.descripcion || '',
     UserAlta: req.body.UserAlta || 'Admin'
   };
 

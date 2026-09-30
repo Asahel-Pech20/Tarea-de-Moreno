@@ -5,10 +5,12 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { TesterApiComponent } from './components/tester-api/tester-api.component';
 import { RetosJsComponent } from './components/retos-js/retos-js.component';
+import { ViewNewsDetailComponent } from './components/view-news-detail/view-news-detail.component';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'noticia/:id', component: ViewNewsDetailComponent },
   { path: 'tester', component: TesterApiComponent },
   { path: 'retos', component: RetosJsComponent },
   { path: 'categoria/:id', component: CategoryComponent },

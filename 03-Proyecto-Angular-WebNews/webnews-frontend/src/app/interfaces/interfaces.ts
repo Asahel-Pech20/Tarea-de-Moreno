@@ -15,6 +15,7 @@ export interface New {
   id?: number;
   titulo: string;
   descripcion: string;
+  contenido?: string;
   categoria_id: number;
   categoria?: Category | null;
   fecha_publicacion: string;
