@@ -17,5 +17,6 @@ yarn-error.log*
 # Sistema y editores
 .vscode/
 .idea/
-.DS_Store
-Thumbs.db
+# Binarios grandes
+*.apk
+**/*.apk
