@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>CotyFT - Sistema Móvil de Cotizaciones</title>
+  
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0f172a',
+              dark: '#1e293b',
+              amber: '#f59e0b',
+              amberDark: '#d97706',
+              surface: '#f8fafc'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-950 flex flex-col justify-center items-center min-h-screen p-0 sm:p-4">
+
+  <!-- Barra Superior de Control Desktop (Permite alternar entre marco de celular y pantalla completa) -->
+  <header class="no-print w-full max-w-md mb-2 flex items-center justify-between px-3 py-1.5 bg-slate-900/90 text-slate-300 rounded-xl text-xs border border-slate-800 shadow-md">
+    <div class="flex items-center gap-1.5">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span class="font-bold text-white tracking-wide">CotyFT</span>
+      <span class="text-[10px] text-amber-400 bg-amber-950/60 px-1.5 py-0.5 rounded font-mono font-semibold">Alpha v1.1</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="btn-toggle-frame" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-[11px] font-medium transition">
+        🖥️ Pantalla Completa
+      </button>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL: MARCO DE TELÉFONO MÓVIL (MOBILE VIEWPORT) -->
+  <div class="phone-viewport-container">
+    
+    <!-- Barra Superior de Estado (Status Bar / Notch) -->
+    <div class="phone-notch-bar no-print">
+      <span id="phone-clock">09:41</span>
+      <div class="phone-speaker"></div>
+      <div class="flex items-center gap-1.5 text-[10px]">
+        <span>5G</span>
+        <span>📶</span>
+        <span>🔋</span>
+      </div>
+    </div>
+
+    <!-- Barra de Navegación de la Aplicación (Top Header) -->
+    <header class="app-header no-print">
+      <div class="flex items-center gap-2.5 cursor-pointer" onclick="App.navigateTo('dashboard')">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black text-sm shadow-md">
+          🔨
+        </div>
+        <div>
+          <h1 class="text-sm font-extrabold tracking-tight text-white leading-none">CotyFT</h1>
+          <p class="text-[9px] text-slate-400 font-medium tracking-wider uppercase mt-0.5">Sistema de Cotizaciones</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="App.showToast('No tienes notificaciones pendientes', 'info')" class="w-8 h-8 rounded-full bg-slate-800 text-amber-400 flex items-center justify-center text-xs relative hover:bg-slate-700 transition">
+          🔔
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-amber-400"></span>
+        </button>
+        <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center border-2 border-slate-700 cursor-pointer" onclick="App.navigateTo('reportes')">
+          AD
+        </div>
+      </div>
+    </header>
+
+    <!-- TOAST DE NOTIFICACIÓN FLOTANTE -->
+    <div id="app-toast" style="display:none;"></div>
+
+    <!-- ÁREA DE CONTENIDO CON SCROLL SUAVE -->
+    <main id="main-content-scroll" class="app-main-content">
+
+      <!-- ========================================== -->
+      <!-- VISTA 1: DASHBOARD (INICIO - COPIA EXACTA FIGMA) -->
+      <!-- ========================================== -->
+      <section id="view-dashboard" class="app-view active-view space-y-4">
+        
+        <!-- Banner de Bienvenida Principal (Hero Figma) -->
+        <div class="bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 text-white p-5 rounded-3xl border border-slate-800 shadow-xl relative overflow-hidden">
+          <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <span class="text-[10px] font-extrabold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-2 py-0.5 rounded-md">Panel Principal</span>
+          </div>
+          
+          <h2 class="text-lg font-black tracking-tight text-white leading-tight">
+            Bienvenido a <span class="text-amber-400">CotyFT</span>
+          </h2>
+          <p class="text-xs text-slate-300 mt-1.5 leading-relaxed font-normal">
+            Plataforma para cotizar y conectar profesionales de herrería, aluminio y carpintería con presupuestos claros.
+          </p>
+
+          <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+            <button onclick="App.navigateTo('nueva-cotizacion')" class="w-full py-2.5 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 active:scale-95 text-slate-950 font-bold text-xs rounded-xl shadow-lg shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all">
+              <span class="text-sm font-black">+</span> Nueva Cotización
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Tarjetas de Métricas Rápidas (KPIs Figma) -->
+        <div class="grid grid-cols-2 gap-2.5">
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+            <span class="text-[10px] font-semibold text-slate-500 tracking-tight uppercase">Cotizaciones Activas</span>
+            <div class="flex items-baseline justify-between mt-1">
+              <span id="kpi-activas" class="text-xl font-extrabold text-slate-900">8</span>
+              <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">En Proceso</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+            <span class="text-[10px] font-semibold text-slate-500 tracking-tight uppercase">Por Enviar</span>
+            <div class="flex items-baseline justify-between mt-1">
+              <span id="kpi-pendientes" class="text-xl font-extrabold text-slate-900">3</span>
+              <span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">Pendientes</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+            <span class="text-[10px] font-semibold text-slate-500 tracking-tight uppercase">Clientes Activos</span>
+            <div class="flex items-baseline justify-between mt-1">
+              <span id="kpi-clientes" class="text-xl font-extrabold text-slate-900">14</span>
+              <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">Cartera</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+            <span class="text-[10px] font-semibold text-slate-500 tracking-tight uppercase">Total Facturado</span>
+            <div class="flex items-baseline justify-between mt-1">
+              <span id="kpi-total" class="text-sm font-black text-slate-900">$142,500</span>
+              <span class="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-1 py-0.5 rounded">MXN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Encabezado de Sección: Módulos del Sistema -->
+        <div class="flex items-center justify-between pt-1">
+          <h3 class="text-xs font-extrabold text-slate-800 uppercase tracking-wider">Módulos del Sistema</h3>
+          <button onclick="App.navigateTo('cotizaciones')" class="text-[11px] font-bold text-amber-600 hover:text-amber-700">Ver historial ></button>
+        </div>
+
+        <!-- Matriz de 6 Tarjetas de Módulos (Replicando exactamente el Figma) -->
+        <div class="grid grid-cols-2 gap-3">
+          
+          <!-- Módulo 1: Nueva Cotización (Azul) -->
+          <div data-module="nueva-cotizacion" class="module-grid-card">
+            <div class="module-header-art bg-gradient-to-tr from-blue-700 via-blue-600 to-sky-500 text-white">
+              <span class="text-3xl filter drop-shadow">📄</span>
+              <div class="absolute inset-0 bg-[radial-gradient(#ffffff20_1px,transparent_1px)] [background-size:8px_8px] pointer-events-none"></div>
+            </div>
+            <div class="p-3 flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 flex items-center justify-between">
+                  Nueva Cotización <span class="text-amber-500 font-bold">›</span>
+                </h4>
+                <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5">Calcula presupuestos de herrería, aluminio o madera.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 2: Mis Cotizaciones (Pizarra / Carpeta) -->
+          <div data-module="cotizaciones" class="module-grid-card">
+            <div class="module-header-art bg-gradient-to-tr from-slate-800 via-slate-700 to-slate-800 text-white">
+              <span class="text-3xl filter drop-shadow">📁</span>
+              <span class="module-badge-tag"></span>
+            </div>
+            <div class="p-3 flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 flex items-center justify-between">
+                  Mis Cotizaciones <span class="text-amber-500 font-bold">›</span>
+                </h4>
+                <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5">Consulta estados: borradores, aprobadas o pendientes.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 3: Clientes (Teal / Verde) -->
+          <div data-module="clientes" class="module-grid-card">
+            <div class="module-header-art bg-gradient-to-tr from-teal-900 via-emerald-800 to-teal-700 text-white">
+              <span class="text-3xl filter drop-shadow">👤</span>
+              <span class="module-badge-tag"></span>
+            </div>
+            <div class="p-3 flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 flex items-center justify-between">
+                  Clientes <span class="text-amber-500 font-bold">›</span>
+                </h4>
+                <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5">Directorio de contactos, teléfonos y direcciones de obra.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 4: Catálogo de Materiales (Naranja) -->
+          <div data-module="materiales" class="module-grid-card">
+            <div class="module-header-art bg-gradient-to-tr from-amber-600 via-orange-500 to-amber-500 text-white">
+              <span class="text-3xl filter drop-shadow">🔩</span>
+            </div>
+            <div class="p-3 flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 flex items-center justify-between">
+                  Catálogo Materiales <span class="text-amber-500 font-bold">›</span>
+                </h4>
+                <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5">Precios de perfiles, tubulares, vidrios y maderas.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 5: Reportes (Púrpura) -->
+          <div data-module="reportes" class="module-grid-card">
+            <div class="module-header-art bg-gradient-to-tr from-purple-800 via-violet-700 to-indigo-600 text-white">
+              <span class="text-3xl filter drop-shadow">📊</span>
+            </div>
+            <div class="p-3 flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 flex items-center justify-between">
+                  Reportes <span class="text-amber-500 font-bold">›</span>
+                </h4>
+                <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5">Estadísticas de ganancias, aprobaciones y cierres.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Módulo 6: Configuración (Gris Mecánico) -->
+          <div data-module="reportes" class="module-grid-card">
+            <div class="module-header-art bg-gradient-to-tr from-slate-700 via-slate-600 to-slate-500 text-white">
+              <span class="text-3xl filter drop-shadow">⚙️</span>
+            </div>
+            <div class="p-3 flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 flex items-center justify-between">
+                  Configuración <span class="text-amber-500 font-bold">›</span>
+                </h4>
+                <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5">Datos del taller, impuestos (IVA) y margen de utilidad.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Lista Rápida de Cotizaciones Recientes -->
+        <div class="pt-2">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-extrabold text-slate-800 uppercase tracking-wider">Últimas Cotizaciones</h3>
+            <button onclick="App.navigateTo('cotizaciones')" class="text-[11px] font-semibold text-slate-500">Ver todas</button>
+          </div>
+          <div id="dashboard-recent-quotes" class="space-y-2">
+            <!-- Inyectado dinámicamente -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VISTA 2: NUEVA COTIZACIÓN (COTIZADOR INTERACTIVO) -->
+      <!-- ========================================== -->
+      <section id="view-nueva-cotizacion" class="app-view space-y-4">
+        
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+          <div class="flex items-center gap-2">
+            <button onclick="App.navigateTo('dashboard')" class="w-7 h-7 rounded-lg bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center">←</button>
+            <h2 class="text-sm font-extrabold text-slate-900">Crear Nueva Cotización</h2>
+          </div>
+          <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">Calculadora</span>
+        </div>
+
+        <form id="form-nueva-cotizacion" class="space-y-4">
+
+          <!-- 1. Datos Generales -->
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <h4 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">1. Datos del Proyecto</h4>
+            
+            <div>
+              <label class="text-xs font-bold text-slate-700 block mb-1">Cliente Registrado</label>
+              <select id="select-cotizacion-cliente" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-medium">
+                <!-- Inyectado dinámicamente -->
+              </select>
+            </div>
+
+            <div>
+              <label class="text-[11px] font-semibold text-slate-500 block mb-1">O escribir nombre rápido de cliente</label>
+              <input type="text" id="input-cliente-rapido" placeholder="Ej. Juan Pérez (Cliente en taller)" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-xs font-bold text-slate-700 block mb-1">Especialidad / Oficio</label>
+                <select id="select-categoria-trabajo" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-medium">
+                  <option value="aluminio">🪟 Cancelería / Aluminio</option>
+                  <option value="herreria">🚪 Herrería / Metal</option>
+                  <option value="carpinteria">🪵 Carpintería / Madera</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-xs font-bold text-slate-700 block mb-1">Estado Inicial</label>
+                <select id="select-estado-inicial" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-medium">
+                  <option value="Pendiente">Pendiente de Envío</option>
+                  <option value="Borrador">Borrador</option>
+                  <option value="Aprobada">Aprobada</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-slate-700 block mb-1">Título / Descripción del Trabajo</label>
+              <input type="text" id="input-titulo-proyecto" required placeholder="Ej: Ventana corrediza 2x1.5m con vidrio tintex" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-semibold" />
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-slate-700 block mb-1">Tiempo Estimado de Entrega</label>
+              <input type="text" id="input-tiempo-entrega" value="7 días hábiles" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs" />
+            </div>
+          </div>
+
+          <!-- 2. Desglose de Materiales e Insumos -->
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">2. Materiales e Insumos</h4>
+              <button type="button" id="btn-add-item-cotizacion" class="text-xs font-bold text-amber-600 hover:text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg">
+                + Agregar Concepto
+              </button>
+            </div>
+
+            <div id="cotizacion-items-container" class="space-y-2.5">
+              <!-- Renglones agregados con JS -->
+            </div>
+          </div>
+
+          <!-- 3. Mano de Obra, Utilidad e Impuestos -->
+          <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <h4 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">3. Mano de Obra y Costos</h4>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-xs font-bold text-slate-700 block mb-1">Mano de Obra ($)</label>
+                <input type="number" id="input-mano-obra" min="0" step="50" value="1500" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold" />
+              </div>
+              <div>
+                <label class="text-xs font-bold text-slate-700 block mb-1">Margen Utilidad (%)</label>
+                <input type="number" id="input-margen-porc" min="0" max="100" value="35" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold" />
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-200">
+              <label class="flex items-center gap-2 cursor-pointer text-xs font-bold text-slate-800">
+                <input type="checkbox" id="check-aplica-iva" checked class="w-4 h-4 text-amber-500 rounded" />
+                <span>Aplicar Impuesto (IVA)</span>
+              </label>
+              <div class="flex items-center gap-1">
+                <input type="number" id="input-iva-porc" value="16" class="w-12 bg-white border border-slate-300 rounded-lg p-1 text-center text-xs font-bold" />
+                <span class="text-xs font-bold text-slate-500">%</span>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-slate-700 block mb-1">Notas u Observaciones para el Cliente</label>
+              <textarea id="input-notas-cotizacion" rows="2" placeholder="Ej. Anticipo del 50% al ordenar y saldo contra entrega..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2 text-xs"></textarea>
+            </div>
+          </div>
+
+          <!-- Resumen de Costos en Vivo -->
+          <div class="bg-slate-900 text-white p-4 rounded-2xl border border-slate-800 shadow-xl space-y-2">
+            <h4 class="text-[11px] font-extrabold uppercase tracking-wider text-amber-400">Resumen del Presupuesto</h4>
+            
+            <div class="space-y-1.5 text-xs text-slate-300 border-b border-slate-800 pb-2">
+              <div class="flex justify-between">
+                <span>Materiales:</span>
+                <span id="display-costo-materiales" class="font-semibold text-white">$0.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Mano de Obra:</span>
+                <span id="display-costo-mano-obra" class="font-semibold text-white">$0.00</span>
+              </div>
+              <div class="flex justify-between text-amber-300">
+                <span>Utilidad Estimada:</span>
+                <span id="display-utilidad-monto" class="font-bold">$0.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Subtotal:</span>
+                <span id="display-subtotal" class="font-semibold text-white">$0.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span>IVA:</span>
+                <span id="display-iva-monto" class="font-semibold text-white">$0.00</span>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-baseline pt-1">
+              <span class="text-xs font-extrabold uppercase text-slate-400">Total a Cotizar:</span>
+              <span id="display-total-final" class="text-xl font-black text-amber-400">$0.00</span>
+            </div>
+          </div>
+
+          <!-- Botones de Acción -->
+          <div class="flex gap-2">
+            <button type="submit" class="flex-1 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-black text-xs rounded-xl shadow-lg transition active:scale-95">
+              💾 Guardar Cotización
+            </button>
+            <button type="button" onclick="App.resetCotizacionForm()" class="px-4 py-3 bg-slate-200 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-300 transition">
+              Limpiar
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VISTA 3: MIS COTIZACIONES (HISTORIAL Y ESTADOS) -->
+      <!-- ========================================== -->
+      <section id="view-cotizaciones" class="app-view space-y-3">
+        
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-extrabold text-slate-900">Historial de Cotizaciones</h2>
+          <button onclick="App.navigateTo('nueva-cotizacion')" class="px-2.5 py-1 bg-amber-500 text-slate-950 rounded-lg text-xs font-bold shadow-sm">
+            + Nueva
+          </button>
+        </div>
+
+        <!-- Buscador -->
+        <div class="relative">
+          <input type="text" id="search-cotizaciones" placeholder="Buscar por cliente, folio o proyecto..." class="w-full bg-white border border-slate-300 rounded-xl py-2 pl-8 pr-3 text-xs shadow-sm focus:outline-none focus:border-amber-500" />
+          <span class="absolute left-2.5 top-2.5 text-xs text-slate-400">🔍</span>
+        </div>
+
+        <!-- Filtros por Estado -->
+        <div class="flex gap-1.5 overflow-x-auto pb-1 text-xs font-semibold no-scrollbar">
+          <button data-filter="Todas" class="filter-cot-pill active-filter px-3 py-1 rounded-full bg-slate-900 text-white">Todas</button>
+          <button data-filter="Pendiente" class="filter-cot-pill px-3 py-1 rounded-full bg-amber-100 text-amber-800">Pendientes</button>
+          <button data-filter="Aprobada" class="filter-cot-pill px-3 py-1 rounded-full bg-emerald-100 text-emerald-800">Aprobadas</button>
+          <button data-filter="Borrador" class="filter-cot-pill px-3 py-1 rounded-full bg-slate-200 text-slate-700">Borrador</button>
+          <button data-filter="Rechazada" class="filter-cot-pill px-3 py-1 rounded-full bg-red-100 text-red-800">Rechazadas</button>
+        </div>
+
+        <!-- Contenedor de Cotizaciones -->
+        <div id="list-all-cotizaciones" class="space-y-3">
+          <!-- Inyectado dinámicamente -->
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VISTA 4: CLIENTES -->
+      <!-- ========================================== -->
+      <section id="view-clientes" class="app-view space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-sm font-extrabold text-slate-900">Directorio de Clientes</h2>
+            <p class="text-[10px] text-slate-500">Contactos y proyectos asociados</p>
+          </div>
+          <button onclick="document.getElementById('modal-nuevo-cliente').classList.remove('hidden')" class="px-2.5 py-1.5 bg-slate-900 text-white rounded-lg text-xs font-bold shadow-sm">
+            + Cliente
+          </button>
+        </div>
+
+        <div id="list-all-clientes" class="space-y-2.5">
+          <!-- Inyectado dinámicamente -->
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VISTA 5: CATÁLOGO DE MATERIALES -->
+      <!-- ========================================== -->
+      <section id="view-materiales" class="app-view space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-sm font-extrabold text-slate-900">Catálogo de Materiales</h2>
+            <p class="text-[10px] text-slate-500">Precios base para presupuestos</p>
+          </div>
+          <button onclick="document.getElementById('modal-nuevo-material').classList.remove('hidden')" class="px-2.5 py-1.5 bg-amber-500 text-slate-950 rounded-lg text-xs font-bold shadow-sm">
+            + Material
+          </button>
+        </div>
+
+        <div id="list-all-materiales" class="space-y-2">
+          <!-- Inyectado dinámicamente -->
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VISTA 6: REPORTES Y CONFIGURACIÓN -->
+      <!-- ========================================== -->
+      <section id="view-reportes" class="app-view space-y-4">
+        
+        <div>
+          <h2 class="text-sm font-extrabold text-slate-900">Reportes de Rendimiento</h2>
+          <p class="text-[10px] text-slate-500">Resumen comercial y tasa de cierre</p>
+        </div>
+
+        <!-- Indicadores de Cierre -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-700">Tasa de Aprobación</span>
+            <span id="rep-tasa-aprobacion" class="text-sm font-extrabold text-emerald-600">65%</span>
+          </div>
+
+          <!-- Barras de Proporción -->
+          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden flex">
+            <div id="bar-aprobadas" class="bg-emerald-500 h-full" style="width: 50%;"></div>
+            <div id="bar-pendientes" class="bg-amber-400 h-full" style="width: 30%;"></div>
+            <div id="bar-borradores" class="bg-slate-300 h-full" style="width: 20%;"></div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+            <div>
+              <span class="text-[10px] text-slate-400 block uppercase">Facturado Aprobado</span>
+              <span id="rep-total-aprobado" class="font-extrabold text-slate-900">$0</span>
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-400 block uppercase">Por Decidir</span>
+              <span id="rep-total-pendiente" class="font-extrabold text-amber-600">$0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ajustes del Taller -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-700">Configuración del Negocio</h3>
+          
+          <form id="form-configuracion" class="space-y-2.5">
+            <div>
+              <label class="text-[11px] font-bold text-slate-600 block">Nombre del Taller / Negocio</label>
+              <input type="text" id="cfg-taller" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs font-semibold" />
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-[11px] font-bold text-slate-600 block">Propietario / Maestro</label>
+                <input type="text" id="cfg-propietario" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs" />
+              </div>
+              <div>
+                <label class="text-[11px] font-bold text-slate-600 block">Teléfono de Contacto</label>
+                <input type="text" id="cfg-telefono" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs" />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-[11px] font-bold text-slate-600 block">Margen Sugerido (%)</label>
+                <input type="number" id="cfg-margen" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs font-bold" />
+              </div>
+              <div>
+                <label class="text-[11px] font-bold text-slate-600 block">IVA por defecto (%)</label>
+                <input type="number" id="cfg-iva" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-xs font-bold" />
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold transition">
+              Guardar Ajustes
+            </button>
+          </form>
+        </div>
+
+        <!-- Zona de Peligro / Reset de Datos -->
+        <div class="p-3 bg-red-50 rounded-2xl border border-red-200 flex items-center justify-between">
+          <div>
+            <h4 class="text-xs font-bold text-red-900">Restablecer Datos</h4>
+            <p class="text-[10px] text-red-600">Vuelve a cargar los datos demo iniciales</p>
+          </div>
+          <button id="btn-reset-demo-data" class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold shadow-sm transition">
+            Resetear
+          </button>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- BARRA INFERIOR DE NAVEGACIÓN (BOTTOM NAV) -->
+    <!-- ========================================== -->
+    <nav class="bottom-nav-bar no-print">
+      
+      <!-- 1. Inicio -->
+      <button class="nav-item active" data-view="dashboard">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <span>Inicio</span>
+      </button>
+
+      <!-- 2. Cotizaciones -->
+      <button class="nav-item" data-view="cotizaciones">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <span>Cotizaciones</span>
+      </button>
+
+      <!-- 3. Botón Flotante Central: Nueva Cotización -->
+      <div class="nav-item-fab">
+        <button class="nav-fab-button" onclick="App.navigateTo('nueva-cotizacion')" title="Crear Cotización">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        </button>
+      </div>
+
+      <!-- 4. Clientes -->
+      <button class="nav-item" data-view="clientes">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <span>Clientes</span>
+      </button>
+
+      <!-- 5. Materiales / Más -->
+      <button class="nav-item" data-view="materiales">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        <span>Catálogo</span>
+      </button>
+
+    </nav>
+
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: DETALLE Y ACCIONES DE COTIZACIÓN -->
+  <!-- ========================================== -->
+  <div id="modal-detalle-cotizacion" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
+    <div class="bg-white w-full max-w-md max-h-[90vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col border border-slate-200">
+      
+      <!-- Cabecera del Modal -->
+      <div class="p-4 bg-slate-900 text-white flex items-center justify-between">
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="modal-cot-folio" class="text-xs font-mono font-extrabold text-amber-400">COT-000</span>
+            <span id="modal-cot-estado-badge" class="text-[10px] px-2 py-0.5 rounded-full font-bold">Estado</span>
+          </div>
+          <h3 id="modal-cot-titulo" class="text-sm font-bold mt-1 line-clamp-1">Proyecto</h3>
+        </div>
+        <button onclick="App.closeCotizacionModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-300 font-bold hover:bg-slate-700 flex items-center justify-center">✕</button>
+      </div>
+
+      <!-- Contenido de la Cotización -->
+      <div class="p-4 overflow-y-auto space-y-4 text-xs">
+        
+        <div class="grid grid-cols-2 gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+          <div>
+            <span class="text-[10px] text-slate-400 block uppercase">Cliente</span>
+            <strong id="modal-cot-cliente" class="text-slate-800 font-bold text-xs">-</strong>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400 block uppercase">Fecha de Emisión</span>
+            <span id="modal-cot-fecha" class="text-slate-800 font-medium">-</span>
+          </div>
+          <div class="col-span-2 pt-1 border-t border-slate-200">
+            <span class="text-[10px] text-slate-400 block uppercase">Tiempo de Entrega</span>
+            <span id="modal-cot-tiempo" class="text-slate-800 font-semibold">-</span>
+          </div>
+        </div>
+
+        <!-- Tabla de Conceptos -->
+        <div>
+          <h4 class="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider mb-1.5">Desglose de Materiales e Insumos</h4>
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b border-slate-200 text-[10px] text-slate-400 uppercase">
+                <th class="py-1">Concepto</th>
+                <th class="py-1 text-center">Cant.</th>
+                <th class="py-1 text-right">P. Unit</th>
+                <th class="py-1 text-right">Importe</th>
+              </tr>
+            </thead>
+            <tbody id="modal-cot-items-table">
+              <!-- Renglones inyectados con JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Resumen Financiero -->
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1.5">
+          <div class="flex justify-between text-slate-600">
+            <span>Subtotal:</span>
+            <span id="modal-cot-subtotal" class="font-semibold text-slate-900">$0.00</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>IVA (16%):</span>
+            <span id="modal-cot-iva" class="font-semibold text-slate-900">$0.00</span>
+          </div>
+          <div class="flex justify-between text-sm font-extrabold text-slate-900 pt-1.5 border-t border-slate-200">
+            <span>Total Presupuestado:</span>
+            <span id="modal-cot-total" class="text-base text-amber-600 font-black">$0.00</span>
+          </div>
+        </div>
+
+        <!-- Observaciones -->
+        <div>
+          <span class="text-[10px] text-slate-400 block uppercase">Notas / Términos</span>
+          <p id="modal-cot-notas" class="text-slate-600 mt-0.5 bg-slate-50 p-2 rounded-lg border border-slate-200 text-[11px]"></p>
+        </div>
+
+        <!-- Selector de Cambio de Estado Rápido -->
+        <div class="p-2.5 bg-amber-50 rounded-xl border border-amber-200 flex items-center justify-between">
+          <span class="font-bold text-amber-900 text-xs">Cambiar Estado:</span>
+          <div class="flex gap-2">
+            <select id="modal-select-cambiar-estado" class="bg-white border border-amber-300 rounded-lg px-2 py-1 text-xs font-bold text-slate-800">
+              <option value="Borrador">Borrador</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Aprobada">Aprobada</option>
+              <option value="Rechazada">Rechazada</option>
+            </select>
+            <button onclick="App.actualizarEstadoDesdeModal()" class="px-2.5 py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg text-xs">
+              Aplicar
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pie de Botones de Acción -->
+      <div class="p-3 bg-slate-100 border-t border-slate-200 flex gap-2">
+        <button onclick="App.compartirWhatsApp()" class="flex-1 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 shadow-sm">
+          💬 WhatsApp
+        </button>
+        <button onclick="App.imprimirCotizacion()" class="flex-1 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 shadow-sm">
+          🖨️ Imprimir / PDF
+        </button>
+        <button onclick="App.eliminarCotizacionActual()" class="p-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl text-xs font-bold" title="Eliminar">
+          🗑️
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: REGISTRAR NUEVO CLIENTE -->
+  <div id="modal-nuevo-cliente" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
+    <div class="bg-white w-full max-w-sm rounded-3xl p-4 shadow-2xl border border-slate-200 space-y-3">
+      <div class="flex items-center justify-between border-b pb-2">
+        <h3 class="text-xs font-extrabold uppercase tracking-wide text-slate-800">Nuevo Cliente</h3>
+        <button onclick="document.getElementById('modal-nuevo-cliente').classList.add('hidden')" class="text-slate-400 font-bold">✕</button>
+      </div>
+      <form id="form-nuevo-cliente" class="space-y-2.5 text-xs">
+        <div>
+          <label class="font-bold text-slate-700 block mb-0.5">Nombre Completo *</label>
+          <input type="text" id="cli-nombre" required class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-0.5">Teléfono / WhatsApp</label>
+          <input type="tel" id="cli-tel" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-0.5">Correo Electrónico</label>
+          <input type="email" id="cli-email" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-0.5">Dirección de Obra o Entrega</label>
+          <input type="text" id="cli-dir" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2" />
+        </div>
+        <div class="flex gap-2 pt-1">
+          <button type="submit" class="flex-1 py-2 bg-slate-900 text-white font-bold rounded-xl">Guardar Cliente</button>
+          <button type="button" onclick="document.getElementById('modal-nuevo-cliente').classList.add('hidden')" class="px-3 py-2 bg-slate-200 text-slate-700 rounded-xl">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: REGISTRAR NUEVO MATERIAL -->
+  <div id="modal-nuevo-material" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
+    <div class="bg-white w-full max-w-sm rounded-3xl p-4 shadow-2xl border border-slate-200 space-y-3">
+      <div class="flex items-center justify-between border-b pb-2">
+        <h3 class="text-xs font-extrabold uppercase tracking-wide text-slate-800">Nuevo Material al Catálogo</h3>
+        <button onclick="document.getElementById('modal-nuevo-material').classList.add('hidden')" class="text-slate-400 font-bold">✕</button>
+      </div>
+      <form id="form-nuevo-material" class="space-y-2.5 text-xs">
+        <div>
+          <label class="font-bold text-slate-700 block mb-0.5">Categoría</label>
+          <select id="mat-categoria" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-medium">
+            <option value="aluminio">🪟 Cancelería / Aluminio</option>
+            <option value="herreria">🚪 Herrería / Metalmecánica</option>
+            <option value="carpinteria">🪵 Carpintería / Madera</option>
+          </select>
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-0.5">Nombre del Material *</label>
+          <input type="text" id="mat-nombre" required placeholder="Ej. Perfil tubular 2x1 pulg" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2" />
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="font-bold text-slate-700 block mb-0.5">Unidad</label>
+            <input type="text" id="mat-unidad" value="tramo" placeholder="tramo, m2, pieza" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-0.5">Precio Unitario ($)</label>
+            <input type="number" id="mat-precio" step="any" required placeholder="0.00" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-bold" />
+          </div>
+        </div>
+        <div class="flex gap-2 pt-1">
+          <button type="submit" class="flex-1 py-2 bg-amber-500 text-slate-950 font-bold rounded-xl">Agregar Material</button>
+          <button type="button" onclick="document.getElementById('modal-nuevo-material').classList.add('hidden')" class="px-3 py-2 bg-slate-200 text-slate-700 rounded-xl">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Registro opcional de Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>

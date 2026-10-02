@@ -14,6 +14,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       <div class="hero-banner">
         <h2>Últimas Noticias Globales</h2>
         <p>Mantente al día con lo más relevante en tecnología, desarrollo y ciencia.</p>
+        <div class="authors-badge">
+          <span>Proyecto 4-C | Alumnos: <strong>Oscar Michel Matos May</strong> & <strong>Santiago Asahel Pech Aké</strong></span>
+        </div>
       </div>
 
       @if (cargando) {
@@ -60,9 +63,18 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       font-size: 1.8rem;
     }
     .hero-banner p {
-      margin: 0;
+      margin: 0 0 12px 0;
       opacity: 0.85;
       font-size: 1rem;
+    }
+    .authors-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
     }
     .loading-state, .empty-state {
       display: flex;

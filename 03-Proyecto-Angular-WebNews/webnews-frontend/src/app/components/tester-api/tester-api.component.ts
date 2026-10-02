@@ -15,6 +15,7 @@ import { MatChipsModule } from '@angular/material/chips';
       <div class="header-card">
         <h2><mat-icon>api</mat-icon> Tester API REST (Simulador Postman Integrado)</h2>
         <p>Prueba los endpoints del servidor Express en tiempo real sin necesidad de salir de la aplicación.</p>
+        <small class="tester-credits">Materia: Aplicaciones Web (4-C) | Integrantes: <strong>Oscar Michel Matos May</strong> & <strong>Santiago Asahel Pech Aké</strong></small>
       </div>
 
       <div class="actions-bar">

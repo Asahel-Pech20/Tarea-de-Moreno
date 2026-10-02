@@ -32,6 +32,7 @@ interface AutoModel {
       <div class="header-card">
         <h2><mat-icon>sports_esports</mat-icon> Compendio Completo: 11 Prácticas de JavaScript (Curso Notion)</h2>
         <p>Demostración interactiva de todos los módulos, retos y ejercicios del curso oficial de Notion.</p>
+        <p style="font-size: 0.9rem; color: #64748b; margin-top: 4px;">Proyecto 4-C | Alumnos: <strong>Oscar Michel Matos May</strong> & <strong>Santiago Asahel Pech Aké</strong></p>
         
         <!-- BARRA DE ACCESO RÁPIDO -->
         <div class="filter-pills">

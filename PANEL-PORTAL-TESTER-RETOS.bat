@@ -7,7 +7,7 @@ set "BASE_DIR=%~dp0"
 cls
 echo ========================================================================
 echo   PANEL INTEGRADO: PORTAL NOTICIAS ^| TESTER API ^| RETOS JAVASCRIPT
-echo   Materia: Aplicaciones Web (4-C) ^| Alumno: Santiago Asahel Pech
+echo   Materia: Aplicaciones Web (4-C) ^| Alumnos: Oscar Michel Matos May ^& Santiago Asahel Pech
 echo ========================================================================
 echo.
 echo   ======================================================================

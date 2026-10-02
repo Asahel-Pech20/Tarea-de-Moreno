@@ -6,7 +6,7 @@ title Portafolio Completo de las 24 Actividades - Aplicaciones Web (4-C)
 cls
 echo ========================================================================
 echo        PORTAFOLIO DE LAS 24 ACTIVIDADES - APLICACIONES WEB (4-C)
-echo        Profesor: Moreno ^| Alumno: Santiago Asahel Pech
+echo        Profesor: Moreno ^| Alumnos: Oscar Michel Matos May ^& Santiago Asahel Pech
 echo ========================================================================
 echo.
 echo   [P] MODO PRESENTACION CONTINUA: RECORRER LAS 24 ACTIVIDADES (CON ENTER)

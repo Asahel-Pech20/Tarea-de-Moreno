@@ -7,9 +7,12 @@ $outputDir2 = "C:\Users\santi\Desktop"
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 # 1. Crear ZIP General del Curso (desde git archive para asegurar limpieza absoluta)
-$zipGeneral = Join-Path $outputDir1 "Tarea-Aplicaciones-Web-4C-Santiago-Pech.zip"
+$zipGeneral = Join-Path $outputDir1 "Tarea-Aplicaciones-Web-4C-Oscar-Matos-Santiago-Pech.zip"
+$zipGeneralLegacy = Join-Path $outputDir1 "Tarea-Aplicaciones-Web-4C-Santiago-Pech.zip"
 if (Test-Path $zipGeneral) { Remove-Item $zipGeneral -Force }
+if (Test-Path $zipGeneralLegacy) { Remove-Item $zipGeneralLegacy -Force }
 git -C "$baseDir" archive -o "$zipGeneral" HEAD
+Copy-Item $zipGeneral $zipGeneralLegacy -Force
 
 # 2. Crear ZIP específico de WebNews + Retos JS + Tester API
 $zipWebNews = Join-Path $outputDir1 "WebNews-Portal-Angular-Api-RetosJS.zip"
@@ -48,8 +51,9 @@ Copy-Item (Join-Path $baseDir "README.md") $tempDir -Force
 [System.IO.Compression.ZipFile]::CreateFromDirectory($tempDir, $zipWebNews, [System.IO.Compression.CompressionLevel]::Optimal, $false)
 Remove-Item -Path $tempDir -Recurse -Force
 
-# Copiar ambos al Escritorio para facilidad del usuario
-Copy-Item $zipGeneral (Join-Path $outputDir2 "Tarea-Aplicaciones-Web-4C-Santiago-Pech.zip") -Force
+# Copiar al Escritorio para facilidad del usuario
+Copy-Item $zipGeneral (Join-Path $outputDir2 "Tarea-Aplicaciones-Web-4C-Oscar-Matos-Santiago-Pech.zip") -Force
+Copy-Item $zipGeneralLegacy (Join-Path $outputDir2 "Tarea-Aplicaciones-Web-4C-Santiago-Pech.zip") -Force
 Copy-Item $zipWebNews (Join-Path $outputDir2 "WebNews-Portal-Angular-Api-RetosJS.zip") -Force
 
 Write-Host "=== ARCHIVOS ZIP CREADOS EXITOSAMENTE ==="

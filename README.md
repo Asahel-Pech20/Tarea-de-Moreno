@@ -1,5 +1,5 @@
 # 📚 Portafolio de Actividades y Prácticas - Aplicaciones Web (4-C)
-### Materia: Aplicaciones Web | Profesor: Moreno | Alumno: Santiago Asahel Pech
+### Materia: Aplicaciones Web | Profesor: Moreno | Alumnos: Oscar Michel Matos May & Santiago Asahel Pech Aké
 
 Este repositorio contiene la entrega completa de las **24 actividades y prácticas** de la materia, incluyendo código fuente ejecutable, scripts interactivos, proyecto completo en Angular + Node.js y los documentos oficiales en formato Word (`.docx`) para cada entrega.
 

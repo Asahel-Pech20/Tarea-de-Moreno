@@ -8,7 +8,7 @@ if not exist "%JS_DIR%" set "JS_DIR=%~dp0"
 cls
 echo ========================================================================
 echo       PRACTICAS DE JAVASCRIPT - CURSO BASICO DE NOTION (GRUPO 4-C)
-echo       Profesor: Moreno ^| Alumno: Santiago Asahel Pech
+echo       Profesor: Moreno ^| Alumnos: Oscar Michel Matos May ^& Santiago Asahel Pech
 echo ========================================================================
 echo.
 echo   [T]  EJECUTAR TODAS LAS 11 PRACTICAS DE CORRIDO

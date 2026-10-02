@@ -15,7 +15,7 @@ const path = require('path');
 
 console.log('========================================================================');
 console.log('  HERRAMIENTAS DE APOYO: EL ECOSISTEMA QUE RODEA A CUALQUIER PROYECTO WEB');
-console.log('  Materia: Aplicaciones Web (4-C) | Alumno: Santiago Asahel Pech');
+console.log('  Materia: Aplicaciones Web (4-C) | Alumnos: Oscar Michel Matos May & Santiago Asahel Pech');
 console.log('========================================================================\n');
 
 // 1. NODE.JS Y NPM
